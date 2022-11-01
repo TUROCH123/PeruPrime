@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,4 +44,18 @@ public class HomeControlador {
 		return new ModelAndView("pelicula").addObject("pelicula",pelicula);
 	}
 
+	@GetMapping("/search")
+	public ModelAndView buscarPeliculas(@PageableDefault(sort = "fechaEstreno",direction = Sort.Direction.DESC) Pageable pageable,@Param("palabraClave") String palabraClave) {
+//	public ModelAndView buscarPeliculas() {
+//		String palabraClave  = "DEADPOOL";
+		if(palabraClave != null) {
+			List<Pelicula> peliculas = peliculaRepositorio.findAlls(palabraClave);
+			return new ModelAndView("peliculas")
+					        .addObject("peliculas",peliculas).addObject("palabraClave",palabraClave);
+
+		}
+		Page<Pelicula> peliculas = peliculaRepositorio.findAll(pageable);
+		return new ModelAndView("search")
+				        .addObject("peliculas",peliculas).addObject("palabraClave",palabraClave);
+	}
 }

@@ -52,6 +52,8 @@ public class Pelicula {
 	@Transient
 	private MultipartFile portada;
 
+	private String proveedor;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -145,6 +147,14 @@ public class Pelicula {
 		this.rutaPortada = rutaPortada;
 		this.generos = generos;
 		this.portada = portada;
+	}
+
+	public String getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(String proveedor) {
+		this.proveedor = proveedor;
 	}
 
 }

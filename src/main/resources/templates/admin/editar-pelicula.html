@@ -43,7 +43,8 @@ form .invalid-feedback {
 					<li class="nav-item"><a class="navbar-brand" href="/home">Inicio</a></li>
 					<li class="nav-item"><a class="navbar-brand" href="/miLista">Mi Lista</a></li>
 					<li class="nav-item"><a class="navbar-brand" href="/peliculas">Peliculas</a></li>
-					<li class="nav-item"><a class="navbar-brand" href="/series">Series</a></li>
+<!-- 					<li class="nav-item"><a class="navbar-brand" href="/series">Series</a></li> -->
+					<li class="nav-item"><a class="navbar-brand" href="/search">Búsqueda</a></li>
 					<li class="nav-item"><a class="navbar-brand" href="/admin" th:href="@{/admin}">Administración</a></li>
 <!-- 					<li class="nav-item"><a class="navbar-brand" href="#" th:href="@{/}">Registro e Inicio de Sesión</a></li> -->
 				</ul>
@@ -62,8 +63,6 @@ form .invalid-feedback {
 	<div class="container">
 		<h2>Editar película</h2>
 		<br>
-<!-- 		<div th:insert="admin/form :: form"> -->
-<!-- 		</div> -->
 <!-- 			<form th:action="@{/admin/peliculas/{id}/editar}" method="post" th:object="${pelicula}" -->
 			<form th:action="@{/admin/peliculas/{id}/editar}" method="post" th:object="${pelicula}" th:field="*{id}"
 			enctype="multipart/form-data">
@@ -117,7 +116,13 @@ form .invalid-feedback {
 				<div class="invalid-feedback"
 					th:if="${#fields.hasErrors('generos')}" th:errors="*{generos}"></div>
 			</div>
-
+			<div class="mb-3">
+				<label for="proveedor" class="form-label">Proveedor : </label> <input
+					type="text" id="proveedor" placeholder="Digite el proveedor"
+					class="form-control" th:field="*{proveedor}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('proveedor')}"
+					th:errors="*{proveedor}"></div>
+			</div>
 			<div class="text-end">
 				<button type="submit" class="btn btn-primary">Guardar</button>
 			</div>

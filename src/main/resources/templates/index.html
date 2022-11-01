@@ -44,7 +44,8 @@ form .invalid-feedback {
 					<li class="nav-item"><a class="navbar-brand" href="/home" th:href="@{/home}">Inicio</a></li>
 					<li class="nav-item"><a class="navbar-brand" href="/miLista">Mi Lista</a></li>
 					<li class="nav-item"><a class="navbar-brand" href="/peliculas" th:href="@{/peliculas}">Peliculas</a></li>
-					<li class="nav-item"><a class="navbar-brand" href="/series">Series</a></li>
+<!-- 					<li class="nav-item"><a class="navbar-brand" href="/series">Series</a></li> -->
+					<li class="nav-item"><a class="navbar-brand" href="/search">Búsqueda</a></li>
 					<li class="nav-item"><a class="navbar-brand" href="/admin" th:href="@{/admin}">Administración</a></li>
 <!-- 					<li class="nav-item"><a class="navbar-brand" href="#" th:href="@{/}">Registro e Inicio de Sesión</a></li> -->
 				</ul>
@@ -62,8 +63,8 @@ form .invalid-feedback {
 	<br>
 
 	<div class="container">
-		<h1>Registro e inicio de sesión con Spring Boot + Spring Security
-			+ Thymeleaf + Hibernate + MySQL y Bootstrap</h1>
+<!-- 		<h1>Registro e inicio de sesión con Spring Boot + Spring Security -->
+<!-- 			+ Thymeleaf + Hibernate + MySQL y Bootstrap</h1> -->
 		<br>
 		<h4>
 			Bienvenido <span sec:authentication="principal.username"></span>
@@ -78,6 +79,7 @@ form .invalid-feedback {
 					<th>Nombre</th>
 					<th>Apellido</th>
 					<th>Email</th>
+					<th>Suscripción</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -86,6 +88,7 @@ form .invalid-feedback {
 					<td th:text="${usuario.nombre}">ID</td>
 					<td th:text="${usuario.apellido}">ID</td>
 					<td th:text="${usuario.email}">ID</td>
+					<td th:text="${usuario.suscrito}">ID</td>
 				</tr>
 			</tbody>
 		</table>

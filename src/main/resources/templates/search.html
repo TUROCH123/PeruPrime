@@ -3,18 +3,22 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="utf-8">
-<title th:inline="text">Peliculas</title>
+<title th:inline="text">Busqueda</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"  -->
+<!-- integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"  -->
+<!-- crossorigin="anonymous"> -->
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 <link
 	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
 	rel="stylesheet" />
+
 <style>
 form .invalid-feedback {
 	display: block;
@@ -59,10 +63,18 @@ form .invalid-feedback {
 
 	<br>
 	<br>
-	<div class="container">
-<!-- 	<div layout:fragment="content"> -->
+	<div class="container" >
+			<form class="form-inline" th:action="@{/search}">
+				<div class="form-group mb-2">
+					<label>Filtrar:</label>
+				</div>
+				<div class="form-group mx-sm-3 mb-2">
+					<input type="text" name="palabraClave" class="form-control" id="palabraClave" th:value="${palabraClave}" placeholder="Digite el valor a buscar" required>
+				</div>
+				<input type="submit" class="btn btn-primary mb-2" value="Buscar">
+				<input type="submit" class="btn btn-secondary mb-2" value="Limpiar">
+			</form>
 		<h4>Todas las películas</h4>
-
 		<div class="row">
 			<div class="row">
 				<div class="col-md-3 my-5" th:each="pelicula : ${peliculas}"
@@ -91,7 +103,9 @@ form .invalid-feedback {
 			</div>
 		</div>
 	</div>
-
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 

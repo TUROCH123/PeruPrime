@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.api.peruprime.modelo.Genero;
 import com.api.peruprime.modelo.Pelicula;
 import com.api.peruprime.repositorio.GeneroRepositorio;
@@ -70,7 +69,6 @@ public class AdminControlador {
 			
 			List<Genero> generos = generoRepositorio.findAll(Sort.by("titulo"));
 			return new ModelAndView("/admin/nueva-pelicula")
-//			return new ModelAndView("admin/nueva-pelicula")
 					.addObject("pelicula",pelicula)
 					.addObject("generos",generos);
 		}
@@ -91,7 +89,6 @@ public class AdminControlador {
 		ids = pelicula.getId();
 		logger.info(Constantes.MENSAJE2,"[mostrarFormilarioDeEditarPelicula][pelicula][id] ", ids);
 		return new ModelAndView("admin/editar-pelicula")
-//		return new ModelAndView("admin/editar-pelicula")
 				.addObject("pelicula",pelicula).addObject("id",pelicula.getId())
 				.addObject("generos",generos);
 	}
@@ -118,7 +115,7 @@ public class AdminControlador {
 		peliculaDB.setFechaEstreno(pelicula.getFechaEstreno());
 		peliculaDB.setYoutubeTrailerId(pelicula.getYoutubeTrailerId());
 		peliculaDB.setGeneros(pelicula.getGeneros());
-		
+		peliculaDB.setProveedor(pelicula.getProveedor());
 		if(!pelicula.getPortada().isEmpty()) {
 			servicio.eliminarArchivo(peliculaDB.getRutaPortada());
 			String rutaPortada = servicio.almacenarArchivo(pelicula.getPortada());

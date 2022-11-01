@@ -1,7 +1,6 @@
 package com.api.peruprime.modelo;
 
 import java.util.Collection;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -40,6 +40,13 @@ public class Usuario {
 			)
 	private Collection<Rol> roles;
 
+	@OneToOne(cascade = CascadeType.ALL)
+//	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "planes_id")
+	private Planes planes;
+	
+	private String suscrito;
+	
 	public Long getId() {
 		return id;
 	}
@@ -109,6 +116,14 @@ public class Usuario {
 
 	public Usuario() {
 		
+	}
+
+	public String getSuscrito() {
+		return suscrito;
+	}
+
+	public void setSuscrito(String suscrito) {
+		this.suscrito = suscrito;
 	}
 
 }
