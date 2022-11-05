@@ -7,9 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-
 import javax.annotation.PostConstruct;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,11 +15,9 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.api.peruprime.exception.AlmacenExcepcion;
 import com.api.peruprime.exception.FileNotFoundException;
 import com.api.peruprime.util.Constantes;
-
 import org.springframework.core.io.Resource;
 
 @Service
@@ -30,7 +26,8 @@ public class AlmacenServicioImpl implements AlmacenServicio{
 	@Value("${storage.location}")
 	private String storageLocation;
 	
-	//esta sirve para indicar que este metodo se va a ejecutar cada vez que halla una nueva instancia de esta esta clase
+	// esta sirve para indicar que este metodo se va a ejecutar cada vez que halla
+	// una nueva instancia de esta esta clase
 	@PostConstruct 
 	@Override
 	public void iniciarAlmacenDeArchivos() {
@@ -52,7 +49,8 @@ public class AlmacenServicioImpl implements AlmacenServicio{
 		try {
 			InputStream inputStream  = archivo.getInputStream();
 			logger.info(Constantes.MENSAJE2,"[almacenarArchivo][inputStream] ", inputStream);
-			Files.copy(inputStream,Paths.get(storageLocation).resolve(nombreArchivo),StandardCopyOption.REPLACE_EXISTING);
+			Files.copy(inputStream, Paths.get(storageLocation).resolve(nombreArchivo),
+					StandardCopyOption.REPLACE_EXISTING);
 		}catch (IOException excepcion) {
 			throw new AlmacenExcepcion("Error al almacenar el archivo " + nombreArchivo,excepcion);
 		}

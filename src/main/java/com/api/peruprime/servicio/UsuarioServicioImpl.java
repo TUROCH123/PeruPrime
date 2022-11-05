@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,11 +19,11 @@ import com.api.peruprime.controlador.dto.UsuarioRegistroDTO;
 import com.api.peruprime.modelo.Rol;
 import com.api.peruprime.modelo.Usuario;
 import com.api.peruprime.repositorio.UsuarioRepositorio;
+import com.api.peruprime.util.Constantes;
 
 @Service
 public class UsuarioServicioImpl implements UsuarioServicio {
-
-	
+	private static final Logger logger = LoggerFactory.getLogger(UsuarioServicioImpl.class);
 	private UsuarioRepositorio usuarioRepositorio;
 
 	@Autowired
@@ -33,9 +36,9 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
 	@Override
 	public Usuario guardar(UsuarioRegistroDTO registroDTO) {
-		Usuario usuario = new Usuario(registroDTO.getNombre(), 
-				registroDTO.getApellido(),registroDTO.getEmail(),
-				passwordEncoder.encode(registroDTO.getPassword()),Arrays.asList(new Rol("ROLE_USER")));
+		Usuario usuario = new Usuario(registroDTO.getNombre(), registroDTO.getApellido(), registroDTO.getEmail(),
+				passwordEncoder.encode(registroDTO.getPassword()), Arrays.asList(new Rol("ROLE_USER")),
+				registroDTO.getSuscrito(), registroDTO.getFechaInscripcion(), registroDTO.getFechaVencimiento());
 		return usuarioRepositorio.save(usuario);
 	}
 
@@ -45,6 +48,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 		if(usuario == null) {
 			throw new UsernameNotFoundException("Usuario o password inválidos");
 		}
+		logger.info(Constantes.MENSAJE2, "[loadUserByUsername][usuario.getEmail()] ", usuario.getEmail());
 		return new User(usuario.getEmail(),usuario.getPassword(), mapearAutoridadesRoles(usuario.getRoles()));
 	}
 
@@ -56,4 +60,5 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 	public List<Usuario> listarUsuarios() {
 		return usuarioRepositorio.findAll();
 	}
+
 }

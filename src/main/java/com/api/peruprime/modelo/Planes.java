@@ -33,6 +33,11 @@ public class Planes {
 		this.tipoPlanes = tipoPlanes;
 	}
 
+	public Planes(TipoPlanes tipoPlanes) {
+		super();
+		this.tipoPlanes = tipoPlanes;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -49,5 +54,4 @@ public class Planes {
 		this.tipoPlanes = tipoPlanes;
 	}
 
-    
 }

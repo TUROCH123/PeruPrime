@@ -37,6 +37,13 @@ public class TipoPlanes {
 		this.tiempo = tiempo;
 	}
 
+	public TipoPlanes(String nombre, Double precio, int tiempo) {
+		super();
+		this.nombre = nombre;
+		this.precio = precio;
+		this.tiempo = tiempo;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

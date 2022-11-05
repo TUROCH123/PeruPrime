@@ -1,0 +1,795 @@
+/* .fNPeSb { */
+/*     text-align: center; */
+/* } */
+
+/* * { */
+/*     box-sizing: border-box; */
+/* } */
+section {
+    display: block;
+}
+
+/* #app_body_content { */
+/*     -webkit-font-smoothing: antialiased; */
+/*     align-items: stretch; */
+/*     display: flex; */
+/*     flex-direction: column; */
+/*     min-height: 100vh; */
+/* } */
+
+/* body { */
+/*     -moz-osx-font-smoothing: grayscale; */
+/*     -webkit-font-smoothing: antialiased; */
+/*     background: #FFFFFF; */
+/*     margin: 0; */
+/*     overflow-x: hidden; */
+/*     padding: 0; */
+/*     -webkit-user-select: none; */
+/*     -moz-user-select: none; */
+/*     -ms-user-select: none; */
+/*     user-select: none; */
+/* } */
+
+/* html { */
+/*     -webkit-text-size-adjust: 100%; */
+/*     line-height: 1.15; */
+/* } */
+
+/* .text-color--primary { */
+/*     color: #f9f9f9; */
+/* /*      color: #FFFFFF; */ */
+/* } */
+
+/* .padding--bottom-6 { */
+/*     padding-bottom: 1.5rem; */
+/* } */
+
+/* .typeramp-avenir-world-for-disney .h2, .typeramp-avenir-world-for-disney h2 { */
+/*     font-family: Avenir-World-for-Disney-Demi,sans-serif; */
+/*     font-size: 32px; */
+/*     letter-spacing: .11px; */
+/*     line-height: 1.2; */
+/* } */
+
+/* h1, h2, h3, h4, h5 { */
+/*     margin: 0; */
+/*     padding: 0; */
+/* } */
+
+/* * { */
+/*     box-sizing: border-box; */
+/* } */
+
+/* h2 { */
+/*     display: block; */
+/*     font-size: 1.5em; */
+/*     margin-block-start: 0.83em; */
+/*     margin-block-end: 0.83em; */
+/*     margin-inline-start: 0px; */
+/*     margin-inline-end: 0px; */
+/*     font-weight: bold; */
+/* } */
+
+/* @media (min-width: 480px) */
+/* <style> */
+/* .buDove { */
+/*     max-width: 528px; */
+/* } */
+
+/* .buDove { */
+/*     align-items: flex-start; */
+/*     display: flex; */
+/*     flex-flow: row wrap; */
+/*     -webkit-box-pack: center; */
+/*     justify-content: center; */
+/*     list-style: none; */
+/*     margin: 42px auto; */
+/*     padding: 0px; */
+/*     width: 100%; */
+/* } */
+
+/* ul { */
+/*     display: block; */
+/*     list-style-type: disc; */
+/*     margin-block-start: 1em; */
+/*     margin-block-end: 1em; */
+/*     margin-inline-start: 0px; */
+/*     margin-inline-end: 0px; */
+/*     padding-inline-start: 40px; */
+/* } */
+
+/* .buDove .profile-avatar-enter-done { */
+/*     transform: translateY(0px); */
+/*     transition: all 300ms ease-out 0s; */
+/* } */
+
+/* div { */
+/*     display: block; */
+/* } */
+
+/* .gijFrw::after { */
+/*     border-radius: 50%; */
+/*     border: 4px solid rgba(0, 0, 0, 0); */
+/*     inset: 0px; */
+/*     content: ""; */
+/*     position: absolute; */
+/*     transition: border 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955) 0s; */
+/* } */
+
+/* .typeramp-avenir-world-for-disney .h3, .typeramp-avenir-world-for-disney h3 { */
+/*     font-family: Avenir-World-for-Disney-Demi,sans-serif; */
+/*     font-size: 24px; */
+/*     letter-spacing: .11px; */
+/*     line-height: 1.2; */
+/* } */
+
+
+/* .margin--top-6 { */
+/*     margin-top: 1.5rem; */
+/* } */
+
+/* .up-next-overlay__header, h1, h2, h3, h4 { */
+/*     font-family: Avenir-Heavy,Arial,Helvetica,sans-serif; */
+/* } */
+
+/* .text--center { */
+/*     text-align: center; */
+/* } */
+
+/* h3 { */
+/*     display: block; */
+/*     font-size: 1.17em; */
+/*     margin-block-start: 1em; */
+/*     margin-block-end: 1em; */
+/*     margin-inline-start: 0px; */
+/*     margin-inline-end: 0px; */
+/*     font-weight: bold; */
+/* } */
+
+/* `style` attribute { */
+/*     text-align: center; */
+/* } */
+
+/* @media (min-width: 480px) */
+/* <style> */
+/* .cWvpBt { */
+/*     margin: 18px; */
+/* } */
+
+/* .cWvpBt { */
+/*     cursor: pointer; */
+/*     display: flex; */
+/*     -webkit-box-pack: center; */
+/*     justify-content: center; */
+/*     margin: 15px; */
+/*     overflow: visible; */
+/*     position: relative; */
+/*     flex-flow: column wrap; */
+/*     -webkit-box-align: center; */
+/*     align-items: center; */
+/* } */
+
+/* @media (min-width: 768px) */
+/* <style> */
+/* .fHayqP { */
+/*     height: 140px; */
+/*     width: 140px; */
+/* } */
+
+/* .fHayqP { */
+/*     -webkit-box-align: center; */
+/*     align-items: center; */
+/*     background-color: rgba(249, 249, 249, 0.1); */
+/*     border: none; */
+/*     border-radius: 120px; */
+/*     display: flex; */
+/*     height: 120px; */
+/*     -webkit-box-pack: center; */
+/*     justify-content: center; */
+/*     transition: all 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955) 0s; */
+/*     width: 120px; */
+/* } */
+
+/* .fHayqP::after { */
+/*     border-radius: 50%; */
+/*     border: 4px solid rgba(0, 0, 0, 0); */
+/*     inset: 0px; */
+/*     content: ""; */
+/*     position: absolute; */
+/*     transition: border 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955) 0s; */
+/*     pointer-events: none; */
+/* } */
+
+/* label { */
+/*     cursor: default; */
+/* } */
+
+/* .kOMoAG { */
+/*     height: 48px; */
+/*     min-width: 48px; */
+/*     width: 48px; */
+/*     z-index: auto; */
+/* } */
+/* .kOMoAG path { */
+/*     fill: rgb(249, 249, 249); */
+/* } */
+
+/* svg[Attributes Style] { */
+/*     color: white; */
+/*     transform: none; */
+/* } */
+/* .kaMwXS { */
+/*     transition: all 0.3s ease 0s; */
+/* } */
+
+/* svg:not(:root) { */
+/*     overflow: hidden; */
+/* } */
+/* path[Attributes Style] { */
+/*     d: path("M 16.469 17.219 V 5.5 a 1 1 0 0 1 1 -1 h 0.312 a 1 1 0 0 1 1 1 v 11.719 H 30.5 a 1 1 0 0 1 1 1 v 0.312 a 1 1 0 0 1 -1 1 H 18.781 V 31.25 a 1 1 0 0 1 -1 1 h -0.312 a 1 1 0 0 1 -1 -1 V 19.531 H 4.75 a 1 1 0 0 1 -1 -1 v -0.312 a 1 1 0 0 1 1 -1 h 11.719 Z"); */
+/* } */
+/* .text-color--secondary { */
+/*     color: #cacaca; */
+/* } */
+
+/* :not(svg) { */
+/*     transform-origin: 0px 0px; */
+/* } */
+
+/* @media (min-width: 768px) */
+/* <style> */
+/* .ftNTyN { */
+/*     height: 140px; */
+/*     width: 140px; */
+/* } */
+/* .ftNTyN { */
+/*     display: block; */
+/*     cursor: pointer; */
+/*     position: relative; */
+/*     height: 120px; */
+/*     width: 120px; */
+/*     background: url(https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/25A6843153CA0253CB27406678606CE7F740023D1242F42B3BC48B38C903D0E2/scale?width=280&aspectRatio=1.00&format=png) 0% 0% / contain no-repeat; */
+/*     border-radius: 50%; */
+/*     margin: auto; */
+/*     transition: all 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955) 0s; */
+/* } */
+/* .ftNTyN::after { */
+/*     border-radius: 50%; */
+/*     border: 4px solid rgba(0, 0, 0, 0); */
+/*     inset: 0px; */
+/*     content: ""; */
+/*     position: absolute; */
+/*     transition: border 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955) 0s; */
+/* } */
+
+/* .padding--top-6 { */
+/*     padding-top: 1.5rem; */
+/* } */
+
+/* .h3, h3 { */
+/*     font-size: 24px; */
+/*     line-height: 1.2; */
+/* } */
+
+/* .jFLbLg { */
+/*     display: block; */
+/*     cursor: pointer; */
+/*     position: relative; */
+/*     height: 120px; */
+/*     width: 120px; */
+/*     background: url(https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/7A97549C552B55E0AD60FE0ECD2B012DB369F6B935F06EDDC30392DA0EC08076/scale?width=280&aspectRatio=1.00&format=png) 0% 0% / contain no-repeat; */
+/*     border-radius: 50%; */
+/*     margin: auto; */
+/*     transition: all 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955) 0s; */
+/* } */
+
+/* .button.button--secondary { */
+/*     background: #40424a; */
+/* } */
+
+/* .button.button--destructive, .button.button--outline, .button.button--primary, .button.button--secondary, .button.button--transparent, .button.button-play, .button.button-play.button-play--secondary, .theme--kids-mode .button.button-play.button-play--secondary { */
+/*     border: 0; */
+/*     border-radius: .25rem; */
+/*     color: #f9f9f9; */
+/* } */
+
+/* .dhKEIN { */
+/*     padding: 0px 24px; */
+/*     -webkit-box-align: center; */
+/*     align-items: center; */
+/*     cursor: pointer; */
+/*     display: flex; */
+/*     flex-shrink: 0; */
+/*     height: 48px; */
+/*     -webkit-box-pack: center; */
+/*     justify-content: center; */
+/*     margin: 0px; */
+/*     overflow: hidden; */
+/*     text-align: center; */
+/*     transition: all 0.2s ease-in-out 0s; */
+/*     width: auto; */
+/*     -webkit-font-smoothing: antialiased; */
+/*     opacity: 1; */
+/*     visibility: visible; */
+/* } */
+
+/* .button { */
+/*     -webkit-font-smoothing: antialiased; */
+/*     cursor: pointer; */
+/*     display: inline-block; */
+/*     font-size: 15px; */
+/*     font-weight: 900; */
+/*     letter-spacing: 1.5px; */
+/*     line-height: 1.6; */
+/*     outline: none; */
+/*     text-align: center; */
+/*     text-decoration: none; */
+/*     text-transform: uppercase; */
+/* } */
+
+/* button { */
+/*     appearance: auto; */
+/*     writing-mode: horizontal-tb !important; */
+/*     font-style: ; */
+/*     font-variant-ligatures: ; */
+/*     font-variant-caps: ; */
+/*     font-variant-numeric: ; */
+/*     font-variant-east-asian: ; */
+/*     font-weight: ; */
+/*     font-stretch: ; */
+/*     font-size: ; */
+/*     font-family: ; */
+/*     text-rendering: auto; */
+/*     color: buttontext; */
+/*     letter-spacing: normal; */
+/*     word-spacing: normal; */
+/*     line-height: normal; */
+/*     text-transform: none; */
+/*     text-indent: 0px; */
+/*     text-shadow: none; */
+/*     display: inline-block; */
+/*     text-align: center; */
+/*     align-items: flex-start; */
+/*     cursor: default; */
+/*     box-sizing: border-box; */
+/*     background-color: buttonface; */
+/*     margin: 0em; */
+/*     padding: 1px 6px; */
+/*     border-width: 2px; */
+/*     border-style: outset; */
+/*     border-color: buttonborder; */
+/*     border-image: initial; */
+/* } */
+
+/* .badge.badge--large, .button { */
+/*     font-family: Avenir-World-for-Disney-Demi,sans-serif; */
+/* } */
+
+/* [type=button], [type=reset], [type=submit], button { */
+/*     -webkit-appearance: button; */
+/* } */
+
+/* button, select { */
+/*     text-transform: none; */
+/* } */
+
+/* button, input { */
+/*     overflow: visible; */
+/* } */
+
+/* button, input, optgroup, select, textarea { */
+/*     font-family: inherit; */
+/*     font-size: 100%; */
+/*     line-height: 1.15; */
+/*     margin: 0; */
+/* } */
+
+/* .jlMQZL { */
+/*     background-color: rgb(26, 29, 41); */
+/*     position: fixed; */
+/*     height: 100vh; */
+/*     top: 0px; */
+/*     transition: opacity 200ms ease 0s; */
+/*     width: 100%; */
+/*     z-index: -3; */
+/* } */
+
+/* main.account_settings, main.onboarding, main.upgrade { */
+/*     overflow-x: inherit; */
+/* } */
+
+/* elemento { */
+/*     top: 0px; */
+/* } */
+
+/* elemento { */
+/*     margin-top: auto; */
+/*     position: static; */
+/* } */
+/* main { */
+/*     -ms-flex-negative: 0; */
+/*     display: block; */
+/*     flex-grow: 1; */
+/*     flex-shrink: 0; */
+/*     min-height: calc(100vh - 250px); */
+/*     overflow-x: hidden; */
+/*     padding: 0 calc(3.5vw + 24px); */
+/*     position: relative; */
+/* } */
+
+/* * { */
+/*     box-sizing: border-box; */
+/* } */
+
+.bExCrH {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-size: cover;
+}
+
+.bRLnwU {
+    color: rgb(249, 249, 249);
+    margin: 25px auto 40px;
+    max-width: initial;
+    padding: 0px;
+}.bRLnwU {
+    color: rgb(249, 249, 249);
+}
+
+.text-color--secondary {
+    color: #cacaca;
+}
+.overline {
+    font-family: Avenir-World-for-Disney-Regular,sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.25px;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+.typeramp-avenir-world-for-disney .h3, .typeramp-avenir-world-for-disney h3 {
+    font-family: Avenir-World-for-Disney-Demi,sans-serif;
+    font-size: 24px;
+    letter-spacing: .11px;
+    line-height: 1.2;
+}
+.bRLnwU fieldset {
+    outline: currentcolor none medium;
+}
+.cdLWyb {
+    border: medium none;
+    margin: 28px 0px 0px;
+    padding: 0px;
+    width: 100%;
+}
+fieldset {
+    padding: .35em .75em .625em;
+}
+
+.cdLWyb > div {
+    display: flex;
+    flex-flow: row wrap;
+    -moz-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.irgBTk {
+    display: flex;
+    -moz-box-flex: 0;
+    flex: 0 0 calc(50% - 4px);
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+}
+
+button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+button, input {
+    overflow: visible;
+}
+.hMXphK {
+    cursor: pointer;
+}
+.facct {
+    display: none;
+}
+
+.facct + label:hover, .facct:checked + label {
+    transition: all 0.2s ease 0s;
+}
+
+.wrapper.wrapper--radio-button-active {
+    background-color: rgba(0,130,240,.2);
+    border: 1.5px solid #0082f0;
+}
+/* .facct + label { */
+/*     -moz-box-align: center; */
+/*     align-items: center; */
+/*     border-radius: 4px; */
+/*     display: flex; */
+/*     -moz-box-pack: justify; */
+/*     justify-content: space-between; */
+/*     height: 100%; */
+/*     margin: 0px; */
+/*     padding: 10.5px 12px; */
+/*     width: 100%; */
+/* } */
+
+/* .body-copy.body-copy--headline { */
+/*     font-family: Avenir-World-for-Disney-Demi,sans-serif; */
+/*     letter-spacing: .11px; */
+/* } */
+
+/* .text-color--primary { */
+/*     color: #f9f9f9; */
+/* } */
+
+/* .margin--0 { */
+/*     margin: 0; */
+/* } */
+
+/* .body-copy { */
+/*     font-family: Avenir-World-for-Disney-Regular,sans-serif; */
+/*     font-size: 15px; */
+/*     letter-spacing: -.1px; */
+/*     line-height: 1.6; */
+/* } */
+
+/* .typeramp-avenir-world-for-disney .metadata { */
+/*     font-family: Avenir-World-for-Disney-Regular,sans-serif; */
+/*     font-size: 12px; */
+/*     letter-spacing: -.1px; */
+/*     line-height: 1.5; */
+/* } */
+
+/* .text-color--secondary { */
+/*     color: #cacaca; */
+/* } */
+
+/* .body-copy.body-copy--headline { */
+/*     font-family: Avenir-World-for-Disney-Demi,sans-serif; */
+/*     letter-spacing: .11px; */
+/* } */
+
+/* .facct:checked + label .sc-iHhHRJ { */
+/*     background-color: rgb(0, 114, 210); */
+/*     border-color: rgb(0, 114, 210); */
+/* } */
+
+/* .dEWXYi { */
+/*     border-radius: 50%; */
+/*     border: 2px solid rgb(109, 117, 130); */
+/*         border-top-color: rgb(109, 117, 130); */
+/*         border-right-color: rgb(109, 117, 130); */
+/*         border-bottom-color: rgb(109, 117, 130); */
+/*         border-left-color: rgb(109, 117, 130); */
+/*     height: 20px; */
+/*     width: 20px; */
+/* } */
+/* .facct:checked + label .sc-iHhHRJ .sc-kqlzXE { */
+/*     display: block; */
+/* } */
+/* .ihLHjQ { */
+/*     height: 20px; */
+/*     min-width: 20px; */
+/*     width: 20px; */
+/*     z-index: auto; */
+/* } */
+/* .ihLHjQ path { */
+/*     fill: rgb(249, 249, 249); */
+/* } */
+
+/* .boiyVn { */
+/*     transition: all 0.3s ease 0s; */
+/* } */
+/* .irgBTk { */
+/*     display: flex; */
+/*     -moz-box-flex: 0; */
+/*     flex: 0 0 calc(50% - 4px); */
+/*     margin: 0px; */
+/*     padding: 0px; */
+/*     position: relative; */
+/* } */
+
+/* [type="checkbox"], [type="radio"] { */
+/*     box-sizing: border-box; */
+/*     padding: 0; */
+/* } */
+
+/* button, input { */
+/*     overflow: visible; */
+/* } */
+
+/* button, input, optgroup, select, textarea { */
+/*     font-family: inherit; */
+/*     font-size: 100%; */
+/*     line-height: 1.15; */
+/*     margin: 0; */
+/* } */
+
+/* .facct + label { */
+/*     -moz-box-align: center; */
+/*     align-items: center; */
+/*     border-radius: 4px; */
+/*     display: flex; */
+/*     -moz-box-pack: justify; */
+/*     justify-content: space-between; */
+/*     height: 100%; */
+/*     margin: 0px; */
+/*     padding: 10.5px 12px; */
+/*     width: 100%; */
+/* } */
+/* .wrapper.wrapper--radio-button { */
+/*     background-color: #31343e; */
+/*     border: 1.5px solid transparent; */
+/* } */
+
+/* .body-copy.body-copy--headline { */
+/*     font-family: Avenir-World-for-Disney-Demi,sans-serif; */
+/*     letter-spacing: .11px; */
+/* } */
+
+/* .text-color--primary { */
+/*     color: #f9f9f9; */
+/* } */
+
+/* .typeramp-avenir-world-for-disney .metadata { */
+/*     font-family: Avenir-World-for-Disney-Regular,sans-serif; */
+/*     font-size: 12px; */
+/*     letter-spacing: -.1px; */
+/*     line-height: 1.5; */
+/* } */
+
+/* .dEWXYi { */
+/*     border-radius: 50%; */
+/*     border: 2px solid rgb(109, 117, 130); */
+/*     height: 20px; */
+/*     width: 20px; */
+/* } */
+
+.cRRkbF {
+    margin: 16px 0px 0px;
+    padding: 0px;
+    border-color: currentcolor currentcolor rgba(249, 249, 249, 0.2);
+    border-style: none none solid;
+    border-width: 0px 0px 1px;
+    border-image: none 100% / 1 / 0 stretch;
+    width: 100%;
+}
+.cRRkbF > div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    -moz-box-pack: justify;
+    justify-content: space-between;
+}
+/* .bRLnwU fieldset { */
+/*     outline: currentcolor none medium; */
+/* } */
+.gPJFyF {
+    display: flex;
+    padding: 0px;
+    margin: 0px;
+    -moz-box-flex: 0;
+    flex: 0 0 calc(50% + 0px);
+}
+/* button, input, optgroup, select, textarea { */
+/*     font-family: inherit; */
+/*     font-size: 100%; */
+/*     line-height: 1.15; */
+/*     margin: 0; */
+/* } */
+
+.gCgTuY {
+    display: none;
+}
+.gCgTuY + label {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 15px 0px 16px;
+    opacity: 0.8;
+}
+
+/* .typeramp-avenir-world-for-disney .metadata { */
+/*     font-family: Avenir-World-for-Disney-Regular,sans-serif; */
+/*     font-size: 12px; */
+/*     letter-spacing: -.1px; */
+/*     line-height: 1.5; */
+/* } */
+/* .gCgTuY:checked + label, .gCgTuY + label:hover { */
+/*     opacity: 1; */
+/*     transition: all 0.2s ease 0s; */
+/* } */
+/* .gCgTuY:checked + label::after { */
+/*     content: ""; */
+/*     width: 100%; */
+/*     height: 3px; */
+/*     background: rgb(249, 249, 249) none repeat scroll 0% 0%; */
+/*     border-top-right-radius: 2px; */
+/*     border-top-left-radius: 2px; */
+/*     display: block; */
+/*     position: relative; */
+/*     bottom: -1px; */
+/* } */
+
+/* .gCgTuY:checked + label::after, .gCgTuY + label:hover::after { */
+/*     bottom: -17px; */
+/* } */
+/* .padding--bottom-1 { */
+/*     padding-bottom: .25rem; */
+/* } */
+
+/* .gCgTuY + label span { */
+/*     margin-bottom: 0px; */
+/* } */
+/* .gCgTuY + label { */
+/*     width: 100%; */
+/*     height: 100%; */
+/*     margin: 0px; */
+/*     padding: 15px 0px 16px; */
+/*     opacity: 0.8; */
+/* } */
+.gCgTuY + label span {
+    text-align: center;
+    display: flex;
+    -moz-box-align: center;
+    align-items: center;
+    -moz-box-pack: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 6px;
+}
+.gCgTuY:checked + label, .gCgTuY + label:hover {
+    opacity: 1;
+    transition: all 0.2s ease 0s;
+}
+.gCgTuY + label span .icon {
+    width: 32px;
+    height: 32px;
+    margin: 0px 8px 0px 0px;
+    padding: 0px;
+    background: rgba(0, 0, 0, 0) url("https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D2D0CDA454F7E4D57807A6864F3816E794E6768FCC2A54E6E832A03BAAB7FA25/scale") no-repeat scroll center center / contain;
+}
+
+/* .gCgTuY:checked + label::after { */
+/*     content: ""; */
+/*     width: 100%; */
+/*     height: 3px; */
+/*     background: rgb(249, 249, 249) none repeat scroll 0% 0%; */
+/*     border-top-right-radius: 2px; */
+/*     border-top-left-radius: 2px; */
+/*     display: block; */
+/*     position: relative; */
+/*     bottom: -1px; */
+/* } */
+
+/* .gCgTuY:checked + label::after, .gCgTuY + label:hover::after { */
+/*     bottom: -17px; */
+/* } */
+
+/* .gPJFyF { */
+/*     display: flex; */
+/*     padding: 0px; */
+/*     margin: 0px; */
+/*     -moz-box-flex: 0; */
+/*     flex: 0 0 calc(50% + 0px); */
+/* } */
+
+/* .cioQev { */
+/*     display: none; */
+/* } */
+/* .cioQev + label { */
+/*     width: 100%; */
+/*     height: 100%; */
+/*     margin: 0px; */
+/*     padding: 15px 0px 16px; */
+/*     opacity: 0.8; */
+/* } */

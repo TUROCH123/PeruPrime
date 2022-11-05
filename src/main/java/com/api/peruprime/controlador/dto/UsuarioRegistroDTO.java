@@ -1,5 +1,7 @@
 package com.api.peruprime.controlador.dto;
 
+import java.util.Date;
+
 public class UsuarioRegistroDTO {
 
 	private Long id;
@@ -8,6 +10,10 @@ public class UsuarioRegistroDTO {
 	private String email;
 	private String password;
 
+	private String suscrito;
+	private Date fechaInscripcion;
+	private String fechaVencimiento;
+	
 	public Long getId() {
 		return id;
 	}
@@ -59,6 +65,30 @@ public class UsuarioRegistroDTO {
 
 	public UsuarioRegistroDTO() {
 
+	}
+
+	public String getSuscrito() {
+		return suscrito;
+	}
+
+	public void setSuscrito(String suscrito) {
+		this.suscrito = suscrito;
+	}
+
+	public Date getFechaInscripcion() {
+		return fechaInscripcion;
+	}
+
+	public void setFechaInscripcion(Date fechaInscripcion) {
+		this.fechaInscripcion = fechaInscripcion;
+	}
+
+	public String getFechaVencimiento() {
+		return fechaVencimiento;
+	}
+
+	public void setFechaVencimiento(String fechaVencimiento) {
+		this.fechaVencimiento = fechaVencimiento;
 	}
 
 }

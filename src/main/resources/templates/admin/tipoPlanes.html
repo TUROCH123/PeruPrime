@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8">
+<title>Inicio</title>
+<!-- Latest compiled and minified CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<link
+	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+	rel="stylesheet" />
+<style>
+form .invalid-feedback {
+	display: block;
+}
+</style>
+<style>
+.logo img {
+	height: 40px;
+	margin-right: 30px;
+}
+</style>
+
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous" />
+
+<link rel="stylesheet" href="../css/New.css">
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="logo" href="/"><img src="../img/icons/perú.png" alt=""></a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="navbar-brand" href="/home"
+						th:href="@{/home}">Inicio</a></li>
+					<li class="nav-item"><a class="navbar-brand" href="/miLista">Mi
+							Lista</a></li>
+					<li class="nav-item"><a class="navbar-brand" href="/peliculas"
+						th:href="@{/peliculas}">Peliculas</a></li>
+					<!-- 					<li class="nav-item"><a class="navbar-brand" href="/series">Series</a></li> -->
+					<li class="nav-item"><a class="navbar-brand" href="/search">Búsqueda</a></li>
+					<li class="nav-item"><a class="navbar-brand" href="/admin"
+						th:href="@{/admin}">Administración</a></li>
+					<!-- 					<li class="nav-item"><a class="navbar-brand" href="#" th:href="@{/}">Registro e Inicio de Sesión</a></li> -->
+				</ul>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar
+							sesión</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+
+	<div class="container">
+		<br>
+		<h4>
+			Bienvenido <span sec:authentication="principal.username"></span>
+		</h4>
+		<br> <br>
+			<h1 class="list-title">TIPO PLANES</h1>
+			<h2 class="list-title">ESCOGER TIPO PLAN :</h2>
+			<div class="text-end">
+				<a href="/tipoPlanes"
+					class="btn btn-primary mb-3"> TIPO PLAN</a>
+			</div>
+			<div id="webAppScene">
+				<div id="app_scene_content">
+					<div id="app-background" class="sc-cZBZkQ jlMQZL"></div>
+					<main class="onboarding" id="onboarding_index" style="top: 0px;">
+						<div style="margin-top: auto; position: static;"
+							class="fade-appear-done fade-enter-done">
+							<div class="sc-PLyBE bExCrH">
+								<div class="sc-dPNhBE bRLnwU">
+									<div>
+										<h3 class="text-color--primary">Selecciona un plan y
+											configura el pago</h3>
+										<div data-gv2containerkey="paywallContainer">
+											<div>
+												<fieldset class="sc-bYnzgO cdLWyb">
+													<div>
+													<form data-testid="billing-credit-card-form"
+													class="billing-form billing-form--credit" novalidate=""
+													th:action="@{/admin/registrarPlan}" method="get">
+														<div tabindex="0" data-testid="toggle-month"
+															class="sc-lnrBVv irgBTk">
+															<input id="MONTH-0" type="radio" aria-checked="true"
+																data-index="0" name="subscribeOptions" role="radio"
+																data-gv2elementkey="sku"
+																data-gv2elementvalue="disney_plus_monthly_pe_web_2ff3689,disney_plus_yearly_pe_web_4c049cc"
+																class="sc-OxbzP facct" value="MONTH" checked=""><label
+																aria-labelledby="MONTH-0" for="MONTH-0"
+																class="sc-jRhVzh hMXphK form-label wrapper wrapper--radio-button-active">
+																<span class="sc-iIHjhz cRnAnf">
+																	<p
+																		class="body-copy margin--0 body-copy--headline text-color--primary">Disney+
+																		Mensual</p>
+																	<div class="metadata text-color--secondary">PEN
+																		25.90/mes</div>
+															</span>
+																<div class="sc-iHhHRJ dEWXYi">
+																	<div class="sc-kqlzXE hDPrrO">
+																		<svg aria-hidden="true" aria-label="radioCheck"
+																			color="white" role="img" transform="" version="1.1"
+																			viewBox="2 2 20 20"
+																			xmlns="http://www.w3.org/2000/svg"
+																			class="sc-bRBYWo ihLHjQ">
+<title></title>
+<path
+																				d="M8.861 14.443a.962.962 0 0 1-.687-.289l-2.566-2.622a.962.962 0 0 1 1.375-1.346l1.783 1.822 4.17-5.708a.962.962 0 1 1 1.537 1.158L9.63 14.06a.962.962 0 0 1-.769.383z"
+																				class="sc-Rmtcm boiyVn"></path>
+</svg>
+																	</div>
+																</div>
+															</label>
+														</div>
+														<div tabindex="0" data-testid="toggle-year"
+															class="sc-lnrBVv irgBTk">
+															<input id="YEAR-1" type="radio" aria-checked="false"
+																data-index="1" name="subscribeOptions" role="radio"
+																data-gv2elementkey="sku"
+																data-gv2elementvalue="disney_plus_monthly_pe_web_2ff3689,disney_plus_yearly_pe_web_4c049cc"
+																class="sc-OxbzP facct" value="YEAR"><label
+																aria-labelledby="YEAR-1" for="YEAR-1"
+																class="sc-jRhVzh hMXphK form-label wrapper wrapper--radio-button">
+																<span class="sc-iIHjhz cRnAnf">
+																	<p class="body-copy margin--0 body-copy--headline text-color--primary">Disney+
+																		Anual</p>
+																	<div class="metadata text-color--secondary">PEN
+																		259.90/año</div>
+																</span>
+																<div class="sc-iHhHRJ dEWXYi">
+																	<div class="sc-kqlzXE hDPrrO">
+																		<svg aria-hidden="true" aria-label="radioCheck"
+																			color="white" role="img" transform="" version="1.1"
+																			viewBox="2 2 20 20"
+																			xmlns="http://www.w3.org/2000/svg"
+																			class="sc-bRBYWo ihLHjQ">
+<title></title><path d="M8.861 14.443a.962.962 0 0 1-.687-.289l-2.566-2.622a.962.962 0 0 1 1.375-1.346l1.783 1.822 4.17-5.708a.962.962 0 1 1 1.537 1.158L9.63 14.06a.962.962 0 0 1-.769.383z"
+																				class="sc-Rmtcm boiyVn"></path></svg>
+																	</div>
+																</div>
+															</label>
+														</div>
+														<button aria-label="REGISTRAR PLAN"
+														data-testid="credit-submit-button" role="button"
+														kind="primary"
+														class="sc-cvbbAY iAhgAq button button--primary submit-button"
+														id="credit-submit-button" type="submit" value="submit"
+														data-gv2elementkey="agree_&amp;_subscribe"
+														data-gv2interactionkey="agree_&amp;_subscribe"
+														data-gv2-interaction-bound="true">
+														<span>REGISTRAR PLAN</span>
+													</button>
+												</form>
+													</div>
+												</fieldset>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</main>
+				</div>
+			</div>
+
+
+	</div>
+	<!-- 			ACAATERMU -->
+
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+</body>
+</html>
