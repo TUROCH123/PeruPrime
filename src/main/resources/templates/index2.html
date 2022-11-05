@@ -56,8 +56,8 @@ form .invalid-feedback {
 						th:href="@{/peliculas}">Peliculas</a></li>
 					<!-- 					<li class="nav-item"><a class="navbar-brand" href="/series">Series</a></li> -->
 					<li class="nav-item"><a class="navbar-brand" href="/search">Búsqueda</a></li>
-					<li class="nav-item"><a class="navbar-brand" href="/admin"
-						th:href="@{/admin}">Administración</a></li>
+<!-- 					<li class="nav-item"><a class="navbar-brand" href="/admin" -->
+<!-- 						th:href="@{/admin}">Administración</a></li> -->
 					<!-- 					<li class="nav-item"><a class="navbar-brand" href="#" th:href="@{/}">Registro e Inicio de Sesión</a></li> -->
 				</ul>
 			</div>
@@ -74,25 +74,19 @@ form .invalid-feedback {
 	<br>
 
 	<div class="container">
-		<!-- 		<h1>Registro e inicio de sesión con Spring Boot + Spring Security -->
-		<!-- 			+ Thymeleaf + Hibernate + MySQL y Bootstrap</h1> -->
 		<br>
 		<h4>
-			Bienvenido <span sec:authentication="principal.username"  id="username" th:value="${#authentication.principal.username}"></span>
+			Bienvenido <span sec:authentication="principal.username"
+				id="username" th:value="${#authentication.principal.username}"></span>
 		</h4>
-
-		<br> <br>
-		<h3 class="list-title">TIPO PLANES</h3>
-		<h4>ESCOGER TIPO PLAN :</h4>
-		<div class="text-end">
+		<br>
+		<h4 class="list-title">ESCOGER TIPO PLAN :</h4>
+		<!-- 		<div class="text-end"> -->
 			<a href="/tipoPlanes" class="btn btn-primary mb-3"> TIPO PLAN</a>
-		</div>
-
+		<!-- 		</div> -->
 		<div class="row">
 			<div>
 				<h3>Selecciona un plan y configura el pago</h3>
-				<fieldset class="sc-sPYgB cRRkbF">
-<!-- 				<fieldset class="row"> -->
 					<div class="row">
 						<div aria-label="Tarjeta de crédito" role="radio"
 							aria-checked="true" tabindex="0" data-testid="credit-radio-icon"
@@ -101,22 +95,18 @@ form .invalid-feedback {
 								name="paymentOptions" role="radio" data-gv2elementkey="credit"
 								data-gv2interactionkey="credit" class="sc-gJqsIT gCgTuY"
 								value="CREDIT" checked="" data-gv2-interaction-bound="true">
-							<label aria-labelledby="credit-radio-icon"
-								for="credit-radio-icon"
+						<label aria-labelledby="credit-radio-icon" for="credit-radio-icon"
 								class="metadata text-color--secondary padding--bottom-1 cursor--pointer">
 								<span> <span class="icon" role="img"></span>Crédito/débito
 							</span>
 							</label>
 						</div>
 					</div>
-				</fieldset>
 			</div>
 			<div data-gv2containerkey="paymentInfo">
-				<div>
 					<form data-testid="billing-credit-card-form"
 						class="billing-form billing-form--credit" novalidate=""
 						th:action="@{/admin/registrarPago}" method="get">
-						<fieldset class="sc-jDwBTQ gYWKQn">
 							<div data-testid="" class="sc-jlyJG huPEXo">
 								<input aria-label="Nombre que figura en la tarjeta"
 									id="billing-card-name" maxlength="1000" name="CARD_NAME"
@@ -127,8 +117,6 @@ form .invalid-feedback {
 									class="margin--0 overline margin--left-1 text-color--secondary input-label"
 									style="width: 100%;">NOMBRE EN LA TARJETA</p>
 							</div>
-						</fieldset>
-						<fieldset class="sc-jDwBTQ IudZP sc-hARARD eCqXCm">
 							<div data-testid="" class="sc-jlyJG huPEXo">
 								<input aria-label="Escribe el número de la tarjeta de crédito."
 									id="billing-card-number" maxlength="19" name="CARD_NUMBER"
@@ -139,10 +127,8 @@ form .invalid-feedback {
 									class="margin--0 overline margin--left-1 text-color--secondary input-label"
 									style="width: 100%;">NÚMERO DE LA TARJETA</p>
 							</div>
-						</fieldset>
 						<div class="card-row">
-							<fieldset class="sc-jDwBTQ gYWKQn card-exp">
-								<div data-testid="" class="sc-jlyJG huPEXo">
+						<div data-testid="" class="form-group">
 									<input aria-label="Fecha de vencimiento"
 										id="billing-card-exp-date" maxlength="7" name="EXPIRATION"
 										placeholder="MM/AA" type="tel" pattern="[0-9]*"
@@ -152,10 +138,8 @@ form .invalid-feedback {
 										class="margin--0 overline margin--left-1 text-color--secondary input-label"
 										style="width: 100%;">FECHA DE VENCIMIENTO</p>
 								</div>
-							</fieldset>
 							<div class="row-with-icon show-billing">
-								<fieldset class="sc-jDwBTQ gYWKQn sc-dTLGrV dLbPzS">
-									<div data-testid="" class="sc-jlyJG huPEXo">
+							<div data-testid="" class="form-group">
 										<input
 											aria-label="Escribe el código de seguridad (CVV) de la tarjeta de crédito."
 											id="billing-card-CSC" maxlength="4" name="CSC"
@@ -166,26 +150,22 @@ form .invalid-feedback {
 											class="margin--0 overline margin--left-1 text-color--secondary input-label"
 											style="width: 100%;">CÓDIGO DE SEGURIDAD</p>
 									</div>
-								</fieldset>
 							</div>
 						</div>
-						<fieldset class="sc-jDwBTQ gYWKQn">
-							<div data-testid="" class="sc-jlyJG huPEXo">
-								<input aria-label="Nombre del email"
-									id="email" maxlength="1000" name="email"
-									placeholder="" type="text"
+					<div data-testid="" class="form-group">
+						<input aria-label="Nombre del email" id="email" maxlength="1000"
+							name="email" placeholder="" type="text"
 									class="text-color--primary body-copy form-input-text" value=""
 									data-gv2elementkey="email">
 								<p
 									class="margin--0 overline margin--left-1 text-color--secondary input-label"
 									style="width: 100%;">EMAIL</p>
 							</div>
-						</fieldset>
 						<div class="sc-jWojfa WRoJu">
 							<div class="sc-keFjpB cFRKyb">
 								<div class="metadata text-color--secondary padding--right-8">
 									Guardar mis datos de pago para usarlos en otros servicios de la
-									Familia de Compañías Walt Disney. <span> <a
+								Familia de Compañías Peru Prime. <span> <a
 										class="link link--secondary link--secondary__h padding--0 metadata"
 										aria-label="Más información" data-testid="" role="button"
 										data-gv2elementkey="learnMore"
@@ -195,20 +175,18 @@ form .invalid-feedback {
 								</div>
 								<div>
 									<label
-										aria-label="Guardar mis datos de pago para usarlos en otros servicios de la Familia de Compañías Walt Disney."
+									aria-label="Guardar mis datos de pago para usarlos en otros servicios de la Familia de Compañías Peru Prime."
 										aria-pressed="false" for="savePayment"
 										class="sc-bhlBdH eBwgwp form-label" tabindex="0"
 										style="flex-direction: row-reverse; justify-content: flex-end; margin: 0px auto;">
-										<div class="sc-AnqlK dqLBKn">
 											<div>
 												<input aria-checked="false" id="savePayment"
 													data-testid="toggle-switch-savePayment" role="switch"
 													type="checkbox" data-gv2elementkey="savePayment_off"
 													data-gv2interactionkey="savePayment_off"
 													class="sc-eitiEO eySFLe toggle-input" value=""
-													data-gv2-input-bound="true"> <span
-													for="savePayment" class="sc-nrwXf eieey"> </span>
-											</div>
+											data-gv2-input-bound="true"> <span for="savePayment"
+											class="sc-nrwXf eieey"> </span>
 										</div>
 									</label>
 								</div>
@@ -241,10 +219,7 @@ form .invalid-feedback {
 				</div>
 			</div>
 		</div>
-	</div>
 	<!-- 			ACAATERMU -->
-
-
 	<!-- Latest compiled and minified JavaScript -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>

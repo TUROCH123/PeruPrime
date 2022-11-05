@@ -218,12 +218,13 @@ public class AdminControlador {
 		ResponseEntity<?> pagoResponse = pagoWs.realizarPago(pago);
 		String objs = Constantes.printPrettyJSONString(pagoResponse);
 		logger.info(Constantes.MENSAJE2, "[realizarPago] ", objs);
+		usuario.setSuscrito("VIP");
 		logger.info(Constantes.MENSAJE2, "[actualizarUsuarioPorID][pago] ", "despues del pago");
 		usuariows.actualizarUsuarioPorID(usuario.getId(), usuario);
 		logger.info(Constantes.MENSAJE2, "[actualizarUsuarioPorID][pago] ", "despues del pago");
 		List<Pelicula> peliculas = peliculaRepositorio.findAll();
-		return new ModelAndView("admin/index").addObject("peliculas", peliculas).addObject("pago",
-				pagoResponse.getBody());
+		return new ModelAndView("admin/index").addObject("peliculas", peliculas).addObject("email",
+				email);
 	}
 
 }

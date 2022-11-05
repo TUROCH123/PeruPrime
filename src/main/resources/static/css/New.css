@@ -463,9 +463,9 @@ section {
     padding: 0px;
     width: 100%;
 }
-fieldset {
-    padding: .35em .75em .625em;
-}
+/* fieldset { */
+/*     padding: .35em .75em .625em; */
+/* } */
 
 .cdLWyb > div {
     display: flex;
@@ -475,14 +475,14 @@ fieldset {
     width: 100%;
 }
 
-.irgBTk {
-    display: flex;
-    -moz-box-flex: 0;
-    flex: 0 0 calc(50% - 4px);
-    margin: 0px;
-    padding: 0px;
-    position: relative;
-}
+/* .irgBTk { */
+/*     display: flex; */
+/*     -moz-box-flex: 0; */
+/*     flex: 0 0 calc(50% - 4px); */
+/*     margin: 0px; */
+/*     padding: 0px; */
+/*     position: relative; */
+/* } */
 
 button, input, optgroup, select, textarea {
     font-family: inherit;
@@ -494,21 +494,21 @@ button, input, optgroup, select, textarea {
 button, input {
     overflow: visible;
 }
-.hMXphK {
-    cursor: pointer;
-}
-.facct {
-    display: none;
-}
+/* .hMXphK { */
+/*     cursor: pointer; */
+/* } */
+/* .facct { */
+/*     display: none; */
+/* } */
 
 .facct + label:hover, .facct:checked + label {
     transition: all 0.2s ease 0s;
 }
 
-.wrapper.wrapper--radio-button-active {
-    background-color: rgba(0,130,240,.2);
-    border: 1.5px solid #0082f0;
-}
+/* .wrapper.wrapper--radio-button-active { */
+/*     background-color: rgba(0,130,240,.2); */
+/*     border: 1.5px solid #0082f0; */
+/* } */
 /* .facct + label { */
 /*     -moz-box-align: center; */
 /*     align-items: center; */
@@ -558,30 +558,30 @@ button, input {
 /*     letter-spacing: .11px; */
 /* } */
 
-/* .facct:checked + label .sc-iHhHRJ { */
-/*     background-color: rgb(0, 114, 210); */
-/*     border-color: rgb(0, 114, 210); */
-/* } */
+.facct:checked + label .sc-iHhHRJ {
+    background-color: rgb(0, 114, 210);
+    border-color: rgb(0, 114, 210);
+}
 
-/* .dEWXYi { */
-/*     border-radius: 50%; */
-/*     border: 2px solid rgb(109, 117, 130); */
-/*         border-top-color: rgb(109, 117, 130); */
-/*         border-right-color: rgb(109, 117, 130); */
-/*         border-bottom-color: rgb(109, 117, 130); */
-/*         border-left-color: rgb(109, 117, 130); */
-/*     height: 20px; */
-/*     width: 20px; */
-/* } */
+.dEWXYi {
+    border-radius: 50%;
+    border: 2px solid rgb(109, 117, 130);
+        border-top-color: rgb(109, 117, 130);
+        border-right-color: rgb(109, 117, 130);
+        border-bottom-color: rgb(109, 117, 130);
+        border-left-color: rgb(109, 117, 130);
+    height: 20px;
+    width: 20px;
+}
 /* .facct:checked + label .sc-iHhHRJ .sc-kqlzXE { */
 /*     display: block; */
 /* } */
-/* .ihLHjQ { */
-/*     height: 20px; */
-/*     min-width: 20px; */
-/*     width: 20px; */
-/*     z-index: auto; */
-/* } */
+.ihLHjQ {
+    height: 20px;
+    min-width: 20px;
+    width: 20px;
+    z-index: auto;
+}
 /* .ihLHjQ path { */
 /*     fill: rgb(249, 249, 249); */
 /* } */
