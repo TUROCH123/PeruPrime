@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es"
+    xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+<title>Editar Perfil</title>
+	<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<link
+	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+	rel="stylesheet" />
+<style>
+form .invalid-feedback {
+	display: block;
+}
+</style>
+<style>
+.logo img {
+  height: 40px;
+  margin-right: 30px;
+}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container-fluid">
+			<a class="logo" href="/"><img src="../img/icons/perú.png" alt=""></a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="navbar-brand" href="/home">Inicio</a></li>
+					<li class="nav-item"><a class="navbar-brand" href="/miLista">Mi Lista</a></li>
+					<li class="nav-item"><a class="navbar-brand" href="/peliculas">Peliculas</a></li>
+<!-- 					<li class="nav-item"><a class="navbar-brand" href="/series">Series</a></li> -->
+					<li class="nav-item"><a class="navbar-brand" href="/search">Búsqueda</a></li>
+					<li class="nav-item"><a class="navbar-brand" href="/admin" th:href="@{/admin}">Administración</a></li>
+<!-- 					<li class="nav-item"><a class="navbar-brand" href="#" th:href="@{/}">Registro e Inicio de Sesión</a></li> -->
+				</ul>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar
+							sesión</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+	<div class="container">
+		<h2>Editar película</h2>
+		<br>
+<!-- 			<form th:action="@{/admin/peliculas/{id}/editar}" method="post" th:object="${pelicula}" -->
+			<form th:action="@{/admin/perfiles/{id}/editar}" method="post" th:object="${perfil}" th:field="*{id}"
+			enctype="multipart/form-data">
+			<div class="mb-3">
+				<label for="alias" class="form-label">Alias : </label> <input
+					type="text" id="alias" placeholder="Digite el Alias : "
+					class="form-control" th:field="*{alias}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('alias')}"
+					th:errors="*{alias}"></div>
+			</div>
+			<div class="mb-3">
+				<label for="portada" class="form-label">Portada : </label> <input
+					type="file" name="portada" id="portad" class="form-control"
+					th:field="*{portada}">
+				<div class="invalid-feedback"
+					th:if="${#fields.hasErrors('portada')}" th:errors="*{portada}"></div>
+			</div>
+<!-- 			<div class="mb-3"> -->
+<!-- 				<label for="generos" class="form-label">Idioma : </label> <select -->
+<!-- 					id="generos" class="form-control" th:field="*{generos}" multiple> -->
+<!-- 					<option th:each="genero : ${generos}" th:value="${genero.id}" -->
+<!-- 						th:text="${genero.titulo}"></option> -->
+<!-- 				</select> -->
+<!-- 				<div class="invalid-feedback" -->
+<!-- 					th:if="${#fields.hasErrors('generos')}" th:errors="*{generos}"></div> -->
+<!-- 			</div> -->
+			<div class="mb-3">
+				<label for="idioma" class="form-label">Idioma : </label> <input
+					type="text" id="idioma" placeholder="Digite el Idioma"
+					class="form-control" th:field="*{idioma}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('idioma')}"
+					th:errors="*{idioma}"></div>
+			</div>
+			<div class="mb-3">
+				<label for="ping" class="form-label">Ping : </label> <input
+					type="text" id="ping" placeholder="Digite el PING"
+					class="form-control" th:field="*{ping}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('ping')}"
+					th:errors="*{ping}"></div>
+			</div>
+			<div class="text-end">
+				<button type="submit" class="btn btn-primary">Guardar</button>
+			</div>
+		</form>
+	</div>
+	
+	<script
+		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</body>
+</html>

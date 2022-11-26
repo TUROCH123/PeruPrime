@@ -22,5 +22,8 @@ public class RestConfig {
 	public RestTemplate restTemplatePlanes(RestTemplateBuilder restTemplateBuilder) {
 		return restTemplateBuilder.setConnectTimeout(null).setReadTimeout(null).build();
 	}
-
+	@Bean(name = "restTemplatePerfiles")
+	public RestTemplate restTemplatePerfiles(RestTemplateBuilder restTemplateBuilder) {
+		return restTemplateBuilder.setConnectTimeout(null).setReadTimeout(null).build();
+	}
 }

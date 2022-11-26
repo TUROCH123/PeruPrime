@@ -1,5 +1,7 @@
 package com.api.peruprime.controlador;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.api.peruprime.modelo.User;
+import com.api.peruprime.repositorio.UserRepositorio;
 import com.api.peruprime.servicio.UsuarioServicio;
 import com.api.peruprime.util.Constantes;
 
@@ -16,6 +20,9 @@ public class RegistroControlador {
 	private static final Logger logger = LoggerFactory.getLogger(RegistroControlador.class);
 	@Autowired
 	private UsuarioServicio servicio;
+	@Autowired
+	private UserRepositorio userRepositorio;
+	
 	String user = Constantes.TEXTO_VACIO;
 
 	@GetMapping("/home")
@@ -38,17 +45,20 @@ public class RegistroControlador {
 
 	@GetMapping("/userAdmin{username}")
 	public String inicioUserAdmin(Model modelo, @RequestParam(value = "username", required = false) String username) {
-		logger.info(Constantes.MENSAJE2, "[inicioUserNotAdmin] ", username);
+		logger.info(Constantes.MENSAJE2, "[inicioUserAdmin] ", username);
 		if (username == null || username.isEmpty()) {
 			logger.info(Constantes.MENSAJE2, "[inicioUserNotAdmin] ", "username es nulo");
-
-		} else {
-			if (!username.equals("admin@gmail.com")) {
+			List<User> usere = userRepositorio.findAll();
+			logger.info(Constantes.MENSAJE2, "[inicioUserNotAdmin] ", usere.get(0).getEmail());
+			user = usere.get(0).getEmail();
+//		} else {
+			if (user.equals("admin@gmail.com")) {
 				logger.info(Constantes.MENSAJE2, "[equals] ", username);
-				return "index2";
+				modelo.addAttribute("usuarios", servicio.listarUsuarios());
+				return "index";
 			}
 		}
-		modelo.addAttribute("usuarios", servicio.listarUsuarios());
+//		modelo.addAttribute("usuarios", servicio.listarUsuarios());
 		return "index";
 	}
 	
@@ -58,15 +68,17 @@ public class RegistroControlador {
 		logger.info(Constantes.MENSAJE2, "[inicioUserNotAdmin] ", username);
 		if (username == null || username.isEmpty()) {
 			logger.info(Constantes.MENSAJE2, "[inicioUserNotAdmin] ", "username es nulo");
-//			modelo.addAttribute("usuarios", servicio.listarUsuarios());
-		} else {
-			if (!username.equals("admin@gmail.com")) {
-				logger.info(Constantes.MENSAJE2, "[equals] ", username);
-				return "index2";
+			user = username;
 			}
-		}
-		modelo.addAttribute("usuarios", servicio.listarUsuarios());
-		return "index2";
+//		else {
+//		if (user.equals("admin@gmail.com")) {
+//				logger.info(Constantes.MENSAJE2, "[equals] ", user);
+//				return "index";
+//		}
+//		}
+		modelo.addAttribute("user", user);
+//		return "pago";
+		return "verificarPerfil";
 	}
 
 	@GetMapping("/tipoPlanes")

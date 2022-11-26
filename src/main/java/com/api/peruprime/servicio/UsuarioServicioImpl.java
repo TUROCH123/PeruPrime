@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.api.peruprime.controlador.dto.UsuarioRegistroDTO;
 import com.api.peruprime.modelo.Rol;
 import com.api.peruprime.modelo.Usuario;
+import com.api.peruprime.repositorio.UserRepositorio;
 import com.api.peruprime.repositorio.UsuarioRepositorio;
 import com.api.peruprime.util.Constantes;
 
@@ -25,7 +26,8 @@ import com.api.peruprime.util.Constantes;
 public class UsuarioServicioImpl implements UsuarioServicio {
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioServicioImpl.class);
 	private UsuarioRepositorio usuarioRepositorio;
-
+	private UserRepositorio userRepositorio;
+	String emails = Constantes.TEXTO_VACIO;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
@@ -44,11 +46,14 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
 		Usuario usuario = usuarioRepositorio.findByEmail(username);
 		if(usuario == null) {
 			throw new UsernameNotFoundException("Usuario o password inválidos");
 		}
-		logger.info(Constantes.MENSAJE2, "[loadUserByUsername][usuario.getEmail()] ", usuario.getEmail());
+		logger.info(Constantes.MENSAJE2, "[loadUserByUsername][usuario.getEmail()] ", username);
+		emails = username;
+		logger.info(Constantes.MENSAJE2, "[loadUserByUsername][email] ", emails);
 		return new User(usuario.getEmail(),usuario.getPassword(), mapearAutoridadesRoles(usuario.getRoles()));
 	}
 
@@ -58,6 +63,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 	
 	@Override
 	public List<Usuario> listarUsuarios() {
+		logger.info(Constantes.MENSAJE2, "[loadUserByUsername][emails] ", emails);
 		return usuarioRepositorio.findAll();
 	}
 

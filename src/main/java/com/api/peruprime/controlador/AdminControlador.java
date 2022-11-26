@@ -22,16 +22,19 @@ import org.springframework.web.servlet.ModelAndView;
 import com.api.peruprime.controlador.dto.Respuesta;
 import com.api.peruprime.exception.WSException;
 import com.api.peruprime.integration.PagoWs;
+import com.api.peruprime.integration.PerfilWs;
 import com.api.peruprime.integration.UsuarioWs;
 import com.api.peruprime.modelo.Genero;
 import com.api.peruprime.modelo.MedioPago;
 import com.api.peruprime.modelo.Pago;
 import com.api.peruprime.modelo.Pelicula;
+import com.api.peruprime.modelo.Perfiles;
 import com.api.peruprime.modelo.Planes;
 import com.api.peruprime.modelo.TipoPlanes;
 import com.api.peruprime.modelo.Usuario;
 import com.api.peruprime.repositorio.GeneroRepositorio;
 import com.api.peruprime.repositorio.PeliculaRepositorio;
+import com.api.peruprime.repositorio.PerfilRepositorio;
 import com.api.peruprime.repositorio.TipoPlanesRepositorio;
 import com.api.peruprime.repositorio.UsuarioRepositorio;
 import com.api.peruprime.servicio.AlmacenServicioImpl;
@@ -46,32 +49,29 @@ public class AdminControlador {
 	private static final Logger logger = LoggerFactory.getLogger(AdminControlador.class);
 	@Autowired
 	private PeliculaRepositorio peliculaRepositorio;
-
+	@Autowired
+	private PerfilRepositorio perfilRepositorio;
 	@Autowired
 	private GeneroRepositorio generoRepositorio;
 
 	@Autowired
 	private AlmacenServicioImpl servicio;
 
-//	@Autowired
-//	private MedioPagoRepositorio medioPagoRepositorio;
-
 	@Autowired
 	private TipoPlanesRepositorio tipoPlanesRepositorio;
 
 	Integer ids;
+	Integer idPerfil;
 	Usuario usuario = new Usuario();
 	TipoPlanes tipoPlanes = new TipoPlanes();
-
+	String emailUser = Constantes.TEXTO_VACIO;
 	@Autowired
 	private UsuarioWs usuariows;
 
 	@Autowired
 	private PagoWs pagoWs;
-
-//	@Autowired
-//	private PlanesWs planesWs;
-
+	@Autowired
+	private PerfilWs perfilWs;
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
 	
@@ -227,4 +227,109 @@ public class AdminControlador {
 				email);
 	}
 
+	@GetMapping("/verificarPerfil")
+	public ModelAndView verificarPerfil(@RequestParam String email)
+			throws WSException, JsonProcessingException {
+		emailUser = email;
+		logger.info(Constantes.MENSAJE2, "[verificarPerfil][email] ", email);
+		ResponseEntity<Usuario> usuario = perfilWs.obtenerPerfilPorEmail(email);
+		String objs = Constantes.printPrettyJSONString(usuario);
+		logger.info(Constantes.MENSAJE2, "[verificarPerfil] ", objs);
+		return new ModelAndView("admin/perfiles").addObject("perfiles", usuario.getBody().getPerfiles()).addObject("email",
+				emailUser);
+	}
+	
+//	@GetMapping("/perfiles/nuevo")
+	@GetMapping("/perfiles/nuevo/{email}")
+	public ModelAndView mostrarFormularioDeNuevaPerfil(@PathVariable String email) {
+		List<Genero> generos = generoRepositorio.findAll(Sort.by("titulo"));
+		logger.info(Constantes.MENSAJE2, "[mostrarFormularioDeNuevaPerfil][generos] ", generos.size());
+		return new ModelAndView("admin/nueva-perfil").addObject("perfil", new Perfiles()).addObject("generos",
+				generos).addObject("email",	email);
+	}
+	
+	@PostMapping("/perfiles/nuevo")
+	public ModelAndView registrarPerfil(@Validated Perfiles perfil, BindingResult bindingResult) throws WSException, JsonProcessingException {
+		logger.info(Constantes.MENSAJE2, "[registrarPerfil][perfil][email] ", emailUser);
+		logger.info(Constantes.MENSAJE2, "[registrarPerfil][perfil][getRutaPortada] ", perfil.getAvatar());
+		logger.info(Constantes.MENSAJE2, "[registrarPerfil][perfil][Alias] ", perfil.getAlias());
+		logger.info(Constantes.MENSAJE2, "[registrarPerfil][perfil][idioma] ", perfil.getIdioma());
+		logger.info(Constantes.MENSAJE2, "[registrarPerfil][perfil][Portada] ", perfil.getPortada());
+		logger.info(Constantes.MENSAJE2, "[registrarPerfil][perfil][ping] ", perfil.getPing());
+		if (bindingResult.hasErrors() || perfil.getPortada().isEmpty()) {
+			if (perfil.getPortada().isEmpty()) {
+				bindingResult.rejectValue("portada", "MultipartNotEmpty");
+			}
+
+			List<Genero> generos = generoRepositorio.findAll(Sort.by("titulo"));
+			return new ModelAndView("/admin/nueva-perfil").addObject("perfil", perfil).addObject("generos",
+					generos);
+		}
+
+		String rutaPortada = servicio.almacenarArchivo(perfil.getPortada());
+		perfil.setAvatar(rutaPortada);
+		perfil.setPortada(null);
+		ResponseEntity<Usuario> usuario = perfilWs.obtenerPerfilPorEmail(emailUser);
+		String objs1 = Constantes.printPrettyJSONString(usuario);
+		logger.info(Constantes.MENSAJE2, "[registrarPerfil1] ", objs1);
+		usuario.getBody().getPerfiles().add(perfil);
+		String objs = Constantes.printPrettyJSONString(usuario);
+		logger.info(Constantes.MENSAJE2, "[registrarPerfil2] ", objs);
+//		perfilRepositorio.save(perfil);
+		logger.info(Constantes.MENSAJE2, "[actualizarUsuarioPorID][perfil] ", "despues de crear el perfil");
+		usuariows.actualizarUsuarioPorID(usuario.getBody().getId(), usuario.getBody());
+		logger.info(Constantes.MENSAJE2, "[actualizarUsuarioPorID][perfil] ", "despues de crear el perfil");
+		ResponseEntity<Usuario> usuer = perfilWs.obtenerPerfilPorEmail(emailUser);
+		String ob21 = Constantes.printPrettyJSONString(usuer);
+		logger.info(Constantes.MENSAJE2, "[registrarPerfil1] ", ob21);
+//		return new ModelAndView("redirect:/admin/perfiles").addObject("perfiles", usuer.getBody().getPerfiles());
+		return new ModelAndView("/admin/perfiles").addObject("perfiles", usuer.getBody().getPerfiles());
+	}
+	
+	@GetMapping("/perfiles/{id}/editar")
+	public ModelAndView mostrarFormilarioDeEditarPerfil(@PathVariable Integer id) {
+		logger.info(Constantes.MENSAJE2, "[mostrarFormilarioDeEditarPelicula][editar][id] ", id);
+		Perfiles perfil = perfilRepositorio.getOne(id);
+		List<Genero> generos = generoRepositorio.findAll(Sort.by("titulo"));
+		logger.info(Constantes.MENSAJE2, "[mostrarFormilarioDeEditarPelicula][genero] ", generos.size());
+		idPerfil = perfil.getId();
+		logger.info(Constantes.MENSAJE2, "[mostrarFormilarioDeEditarPelicula][pelicula][id] ", ids);
+		return new ModelAndView("admin/editar-perfil").addObject("perfil", perfil)
+				.addObject("id", perfil.getId()).addObject("generos", generos);
+	}
+	
+	@PostMapping("/perfiles/{id}/editar")
+	public ModelAndView actualizarPerfiles(@PathVariable String id, @Validated Perfiles perfil,
+			BindingResult bindingResult) throws WSException {
+		logger.info(Constantes.MENSAJE2, "[actualizarPerfiles][editar][id] ", id);
+		logger.info(Constantes.MENSAJE2, "[actualizarPerfiles][perfil][getRutaPortada] ", perfil.getAvatar());
+		logger.info(Constantes.MENSAJE2, "[actualizarPerfiles][perfil][alias] ", perfil.getAlias());
+		logger.info(Constantes.MENSAJE2, "[actualizarPerfiles][perfil][idioma] ", perfil.getIdioma());
+		logger.info(Constantes.MENSAJE2, "[actualizarPerfiles][perfil][Portada] ", perfil.getPortada());
+		logger.info(Constantes.MENSAJE2, "[actualizarPerfiles][perfil][ping] ", perfil.getPing());
+//		if(bindingResult.hasErrors()) {
+//			logger.info(Constantes.MENSAJE2,"[actualizarPelicula][bindingResult.hasErrors()] ", bindingResult.hasErrors());
+//			List<Genero> generos = generoRepositorio.findAll(Sort.by("titulo"));
+//			return new ModelAndView("admin/editar-pelicula")
+//					.addObject("pelicula",pelicula)
+//					.addObject("generos",generos);
+//		}
+		logger.info(Constantes.MENSAJE2, "[actualizarPerfiles][editar][ids] ", idPerfil);
+//		Perfiles perfilDB = perfilRepositorio.getOne(idPerfil);
+		ResponseEntity<Perfiles> perfilDB = perfilWs.obtenerPerfilPorID(idPerfil);
+		perfilDB.getBody().setAlias(perfil.getAlias());
+		perfilDB.getBody().setIdioma(perfil.getIdioma());
+		perfilDB.getBody().setControlParental(perfil.isControlParental());
+		perfilDB.getBody().setReproduccionAutomatica(perfil.isReproduccionAutomatica());
+		perfilDB.getBody().setPing(perfil.getPing());
+		if (!perfil.getPortada().isEmpty()) {
+			servicio.eliminarArchivo(perfilDB.getBody().getAvatar());
+			String rutaPortada = servicio.almacenarArchivo(perfil.getPortada());
+			perfilDB.getBody().setAvatar(rutaPortada);
+		}
+		perfilRepositorio.save(perfilDB.getBody());
+//		perfilWs.editarPerfilPorID(perfilDB.getBody().getId().longValue(),perfilDB.getBody());
+		logger.info(Constantes.MENSAJE2, "[actualizarPerfiles][editar][emailUser] ", emailUser);
+		return new ModelAndView("redirect:/admin/verificarPerfil").addObject("email", emailUser);
+	}
 }
