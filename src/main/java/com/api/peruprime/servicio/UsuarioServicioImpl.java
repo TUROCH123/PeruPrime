@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import com.api.peruprime.controlador.dto.UsuarioRegistroDTO;
 import com.api.peruprime.modelo.Rol;
 import com.api.peruprime.modelo.Usuario;
-import com.api.peruprime.repositorio.UserRepositorio;
 import com.api.peruprime.repositorio.UsuarioRepositorio;
 import com.api.peruprime.util.Constantes;
 
@@ -26,7 +25,7 @@ import com.api.peruprime.util.Constantes;
 public class UsuarioServicioImpl implements UsuarioServicio {
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioServicioImpl.class);
 	private UsuarioRepositorio usuarioRepositorio;
-	private UserRepositorio userRepositorio;
+
 	String emails = Constantes.TEXTO_VACIO;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;

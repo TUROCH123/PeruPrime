@@ -51,14 +51,12 @@ public class RegistroControlador {
 			List<User> usere = userRepositorio.findAll();
 			logger.info(Constantes.MENSAJE2, "[inicioUserNotAdmin] ", usere.get(0).getEmail());
 			user = usere.get(0).getEmail();
-//		} else {
 			if (user.equals("admin@gmail.com")) {
 				logger.info(Constantes.MENSAJE2, "[equals] ", username);
 				modelo.addAttribute("usuarios", servicio.listarUsuarios());
 				return "index";
 			}
 		}
-//		modelo.addAttribute("usuarios", servicio.listarUsuarios());
 		return "index";
 	}
 	
@@ -70,14 +68,7 @@ public class RegistroControlador {
 			logger.info(Constantes.MENSAJE2, "[inicioUserNotAdmin] ", "username es nulo");
 			user = username;
 			}
-//		else {
-//		if (user.equals("admin@gmail.com")) {
-//				logger.info(Constantes.MENSAJE2, "[equals] ", user);
-//				return "index";
-//		}
-//		}
 		modelo.addAttribute("user", user);
-//		return "pago";
 		return "verificarPerfil";
 	}
 

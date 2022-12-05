@@ -275,14 +275,12 @@ public class AdminControlador {
 		usuario.getBody().getPerfiles().add(perfil);
 		String objs = Constantes.printPrettyJSONString(usuario);
 		logger.info(Constantes.MENSAJE2, "[registrarPerfil2] ", objs);
-//		perfilRepositorio.save(perfil);
 		logger.info(Constantes.MENSAJE2, "[actualizarUsuarioPorID][perfil] ", "despues de crear el perfil");
 		usuariows.actualizarUsuarioPorID(usuario.getBody().getId(), usuario.getBody());
 		logger.info(Constantes.MENSAJE2, "[actualizarUsuarioPorID][perfil] ", "despues de crear el perfil");
 		ResponseEntity<Usuario> usuer = perfilWs.obtenerPerfilPorEmail(emailUser);
 		String ob21 = Constantes.printPrettyJSONString(usuer);
 		logger.info(Constantes.MENSAJE2, "[registrarPerfil1] ", ob21);
-//		return new ModelAndView("redirect:/admin/perfiles").addObject("perfiles", usuer.getBody().getPerfiles());
 		return new ModelAndView("/admin/perfiles").addObject("perfiles", usuer.getBody().getPerfiles());
 	}
 	
@@ -307,15 +305,7 @@ public class AdminControlador {
 		logger.info(Constantes.MENSAJE2, "[actualizarPerfiles][perfil][idioma] ", perfil.getIdioma());
 		logger.info(Constantes.MENSAJE2, "[actualizarPerfiles][perfil][Portada] ", perfil.getPortada());
 		logger.info(Constantes.MENSAJE2, "[actualizarPerfiles][perfil][ping] ", perfil.getPing());
-//		if(bindingResult.hasErrors()) {
-//			logger.info(Constantes.MENSAJE2,"[actualizarPelicula][bindingResult.hasErrors()] ", bindingResult.hasErrors());
-//			List<Genero> generos = generoRepositorio.findAll(Sort.by("titulo"));
-//			return new ModelAndView("admin/editar-pelicula")
-//					.addObject("pelicula",pelicula)
-//					.addObject("generos",generos);
-//		}
 		logger.info(Constantes.MENSAJE2, "[actualizarPerfiles][editar][ids] ", idPerfil);
-//		Perfiles perfilDB = perfilRepositorio.getOne(idPerfil);
 		ResponseEntity<Perfiles> perfilDB = perfilWs.obtenerPerfilPorID(idPerfil);
 		perfilDB.getBody().setAlias(perfil.getAlias());
 		perfilDB.getBody().setIdioma(perfil.getIdioma());
@@ -328,8 +318,17 @@ public class AdminControlador {
 			perfilDB.getBody().setAvatar(rutaPortada);
 		}
 		perfilRepositorio.save(perfilDB.getBody());
-//		perfilWs.editarPerfilPorID(perfilDB.getBody().getId().longValue(),perfilDB.getBody());
 		logger.info(Constantes.MENSAJE2, "[actualizarPerfiles][editar][emailUser] ", emailUser);
 		return new ModelAndView("redirect:/admin/verificarPerfil").addObject("email", emailUser);
+	}
+	
+	@PostMapping("/perfiles/{id}/eliminar")
+	public String eliminarPerfil(@PathVariable Integer id) {
+		logger.info(Constantes.MENSAJE2, "[eliminarPerfil][id] ", id);
+		Perfiles perfil = perfilRepositorio.getOne(id);
+		perfilRepositorio.delete(perfil);
+		servicio.eliminarArchivo(perfil.getAvatar());
+
+		return "redirect:/admin";
 	}
 }

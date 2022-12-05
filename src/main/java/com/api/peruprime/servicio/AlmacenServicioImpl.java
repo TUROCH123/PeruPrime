@@ -86,7 +86,7 @@ public class AlmacenServicioImpl implements AlmacenServicio{
 		try {
 			FileSystemUtils.deleteRecursively(archivo);
 		}catch (Exception excepcion) {
-			System.out.println(excepcion);
+			logger.info(Constantes.MENSAJE2, excepcion);
 		}
 	}
 
