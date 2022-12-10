@@ -44,10 +44,8 @@ form .invalid-feedback {
 					<li class="nav-item"><a class="navbar-brand" href="/home" th:href="@{/home}">Inicio</a></li>
 					<li class="nav-item"><a class="navbar-brand" href="/miLista">Mi Lista</a></li>
 					<li class="nav-item"><a class="navbar-brand" href="/peliculas" th:href="@{/peliculas}">Peliculas</a></li>
-<!-- 					<li class="nav-item"><a class="navbar-brand" href="/series">Series</a></li> -->
 					<li class="nav-item"><a class="navbar-brand" href="/search">Búsqueda</a></li>
 					<li class="nav-item"><a class="navbar-brand" href="/admin" th:href="@{/admin}">Administración</a></li>
-<!-- 					<li class="nav-item"><a class="navbar-brand" href="#" th:href="@{/}">Registro e Inicio de Sesión</a></li> -->
 				</ul>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
@@ -63,17 +61,13 @@ form .invalid-feedback {
 	<br>
 
 	<div class="container">
-<!-- 		<h1>Registro e inicio de sesión con Spring Boot + Spring Security -->
-<!-- 			+ Thymeleaf + Hibernate + MySQL y Bootstrap</h1> -->
 		<br>
 		<h4>
 <!-- 			Bienvenido <span sec:authentication="principal.username" id="username" th:value="${#authentication.principal.username}"></span> -->
 					Bienvenido <span sec:authentication="principal.username" ></span>
 		</h4>
-<!-- 		<div><sec:authentication property=principal.username id="username"/></div> -->
 		<br> <br>
 		<h1><a th:href="@{/userAdmin{username}(username=*{username})}" > Administrador</a> | <a th:href="@{/userNotAdmin{username}(username=*{username})}"> Usuario</a></h1>
-<!-- 		<h1><a th:href="@{/userAdmin{username}(username=*{username})}" > Administrador</a> | <a th:href="@{/userNotAdmin{username}(username=*{username})}"> Usuario</a></h1> -->
 
 		<table class="table table-striped table-bordered">
 			<thead class="table-dark">
@@ -93,15 +87,11 @@ form .invalid-feedback {
 					<td th:text="${usuario.apellido}">ID</td>
 					<td th:text="${usuario.email}">ID</td>
 					<td th:text="${usuario.suscrito}">ID</td>
-<!-- 					<td th:href="@{/verificarRecibo{userId}(userId=*{usuario.id})}" th:text="${usuario.id}">ID</td> -->
-<!-- 					<td th:href="@{/verificarRecibo{userId}(userId=*{userId})}" id="userId" th:value="${usuario.id}" th:text="${usuario.id}">ID</td> -->
 					<td><a th:href="@{/admin/verificarRecibo/{id}(id=*{usuario.id})}" id="id" th:text="${usuario.id}">ID</a></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-
-
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script
