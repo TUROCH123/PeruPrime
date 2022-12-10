@@ -26,7 +26,6 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioServicioImpl.class);
 	private UsuarioRepositorio usuarioRepositorio;
 
-	String emails = Constantes.TEXTO_VACIO;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
@@ -36,10 +35,17 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 	}
 
 	@Override
-	public Usuario guardar(UsuarioRegistroDTO registroDTO) {
-		Usuario usuario = new Usuario(registroDTO.getNombre(), registroDTO.getApellido(), registroDTO.getEmail(),
+	public Usuario guardar(UsuarioRegistroDTO registroDTO) {//ROLE_ADMIN
+		Usuario usuario = new Usuario();
+		if(registroDTO.getEmail().equals("admin@gmail.com")) {
+			usuario = new Usuario(registroDTO.getNombre(), registroDTO.getApellido(), registroDTO.getEmail(),
+					passwordEncoder.encode(registroDTO.getPassword()), Arrays.asList(new Rol("ROLE_ADMIN")),
+					registroDTO.getSuscrito(), registroDTO.getFechaInscripcion(), registroDTO.getFechaVencimiento());
+		}else {
+			usuario = new Usuario(registroDTO.getNombre(), registroDTO.getApellido(), registroDTO.getEmail(),
 				passwordEncoder.encode(registroDTO.getPassword()), Arrays.asList(new Rol("ROLE_USER")),
 				registroDTO.getSuscrito(), registroDTO.getFechaInscripcion(), registroDTO.getFechaVencimiento());
+		}
 		return usuarioRepositorio.save(usuario);
 	}
 
@@ -51,8 +57,6 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 			throw new UsernameNotFoundException("Usuario o password inválidos");
 		}
 		logger.info(Constantes.MENSAJE2, "[loadUserByUsername][usuario.getEmail()] ", username);
-		emails = username;
-		logger.info(Constantes.MENSAJE2, "[loadUserByUsername][email] ", emails);
 		return new User(usuario.getEmail(),usuario.getPassword(), mapearAutoridadesRoles(usuario.getRoles()));
 	}
 
@@ -62,7 +66,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 	
 	@Override
 	public List<Usuario> listarUsuarios() {
-		logger.info(Constantes.MENSAJE2, "[loadUserByUsername][emails] ", emails);
+//		logger.info(Constantes.MENSAJE2, "[loadUserByUsername][emails] ", emails);
 		return usuarioRepositorio.findAll();
 	}
 

@@ -80,9 +80,30 @@ form .invalid-feedback {
 				id="username" th:value="${#authentication.principal.username}"></span>
 		</h4>
 		<br>
-		<h4 class="list-title">ESCOGER TIPO PLAN :</h4>
-		<!-- 		<div class="text-end"> -->
-<!-- 		<a href="/tipoPlanes" class="btn btn-primary mb-3"> TIPO PLAN</a> -->
+		<h4 class="list-title">VERIFICAR DATOS DE TU USUARIO :</h4>
+		<div class="row">
+				<form th:action="@{/admin/verificarDatosUsuario}" method="get">
+
+					<div data-testid="" class="form-group">
+						<input aria-label="Nombre del email" id="email" maxlength="1000"
+							name="email" placeholder="" type="text"
+							class="text-color--primary body-copy form-input-text" value=""
+							data-gv2elementkey="email">
+						<p class="margin--0 overline margin--left-1 text-color--secondary input-label"
+							style="width: 100%;">EMAIL</p>
+					</div>
+					<button aria-label="VERIFICAR USUARIO"
+						data-testid="credit-submit-button" role="button" kind="primary"
+						class="sc-cvbbAY iAhgAq button button--primary submit-button"
+						id="credit-submit-button" type="submit" value="submit"
+						data-gv2elementkey="agree_&amp;_subscribe"
+						data-gv2interactionkey="agree_&amp;_subscribe"
+						data-gv2-interaction-bound="true">
+						<span>VERIFICAR USUARIO</span>
+					</button>
+				</form>
+		</div>
+		<h4 class="list-title">VERIFICAR CANTIDAD DE PERFILES :</h4>
 		<div class="row">
 				<form th:action="@{/admin/verificarPerfil}" method="get">
 
@@ -104,7 +125,29 @@ form .invalid-feedback {
 						<span>VERIFICAR PERFILES</span>
 					</button>
 				</form>
-<!-- 			</div> -->
+		</div>
+		<h4 class="list-title">REALIZAR SUSCRIPCION :</h4>
+				<div class="row">
+				<form th:action="@{/admin/realizarSuscripcion}" method="get">
+
+					<div data-testid="" class="form-group">
+						<input aria-label="Nombre del email" id="email" maxlength="1000"
+							name="email" placeholder="" type="text"
+							class="text-color--primary body-copy form-input-text" value=""
+							data-gv2elementkey="email">
+						<p class="margin--0 overline margin--left-1 text-color--secondary input-label"
+							style="width: 100%;">EMAIL</p>
+					</div>
+					<button aria-label="REALIZAR SUSCRIPCION"
+						data-testid="credit-submit-button" role="button" kind="primary"
+						class="sc-cvbbAY iAhgAq button button--primary submit-button"
+						id="credit-submit-button" type="submit" value="submit"
+						data-gv2elementkey="agree_&amp;_subscribe"
+						data-gv2interactionkey="agree_&amp;_subscribe"
+						data-gv2-interaction-bound="true">
+						<span>REALIZAR SUSCRIPCION</span>
+					</button>
+				</form>
 		</div>
 	</div>
 	<!-- 			ACAATERMU -->

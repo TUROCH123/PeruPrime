@@ -27,7 +27,7 @@ class RegistroControladorTests {
 	private Model modelo;
 	  @SuppressWarnings("null")
 	@Test
-	  void testException001() throws JsonProcessingException {
+	  void testRegistroIniciarSesionCuenta001() throws JsonProcessingException {
 	    try {
 
 	      registroControlador.home();

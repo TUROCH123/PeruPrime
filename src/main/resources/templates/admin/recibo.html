@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
 <head>
 <meta charset="utf-8">
-<title th:inline="text">Perfiles</title>
+<title>[[${recibo.userId}]]</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -40,7 +40,7 @@ form .invalid-feedback {
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="navbar-brand" href="/home">Inicio</a></li>
-					<li class="nav-item"><a class="navbar-brand" href="/miLista">Mi Lista</a></li>
+					<li class="nav-item"><a class="navbar-brand" href="/miLista" th:href="@{/miLista/{id}(id=*{recibo.userId})}">Mi Lista</a></li>
 					<li class="nav-item"><a class="navbar-brand" href="/peliculas">Peliculas</a></li>
 <!-- 					<li class="nav-item"><a class="navbar-brand" href="/series">Series</a></li> -->
 					<li class="nav-item"><a class="navbar-brand" href="/search">Búsqueda</a></li>
@@ -50,7 +50,8 @@ form .invalid-feedback {
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar Sesión</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar
+							sesión</a></li>
 				</ul>
 			</div>
 		</div>
@@ -58,45 +59,49 @@ form .invalid-feedback {
 
 	<br>
 	<br>
-	<div class="container">
+	<div class="container" th:object="${recibo}">
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-md-9"> -->
 
-		<h4>Todos los perfiles</h4>
-		<div class="text-end">
-			<a href="/admin/peliculas/nuevo/{email}(email=*{email})" th:href="@{/admin/perfiles/nuevo/{email}(email=*{email})}" class="btn btn-primary mb-3">
-				Agregar perfil </a>
-		</div>
-		<div class="row">
-			<div class="row">
-				<div class="col-md-3 my-5" th:each="perfil : ${perfiles}"
-					th:object="${perfil}">
-					<a th:href="@{/perfiles/{id}(id=*{id})}" class="card shadow-lg"
-						style="text-decoration: none;"> 
-						<img
-						th:src="@{/assets/{filename}(filename=*{avatar})}" class="card-img-top">
-
-						<div class="card-body">
-							<h2 class="card-title fs-6" th:text="*{alias}"></h2>
-<!-- 							<p th:text="*{#temporals.format(fechaEstreno,'dd/MM/yyyy')}" -->
-<!-- 								class="text-muted small"></p> -->
-						</div>
-					</a>
-					<a th:href="@{/admin/perfiles/{id}/editar(id=*{id})}">Editar</a>
-					   <a href="javascript:void(0)" class="text-danger ms-3" th:onclick="'eliminarPerfil(' + *{id} +')'">Eliminar</a>
-					   <form th:id="'eliminarPerfilForm' + *{id}" th:action="@{/admin/perfiles/{id}/eliminar(id=*{id})}" method="post" class="d-none">
-					   </form>
-				</div>
-			</div>
-		</div>
-				<a href="/retroceder" class="btn btn-primary mb-3">RETROCEDER</a>
+<!-- 				<h2>Monto : <a th:text="*{monto}"></a></h2> -->
+<!-- <!-- 				<h2>Apellidos : <a th:text="*{fechaPago}"></a></h2> -->
+<!-- <!-- 				<h2>Email : <a th:text="*{email}"></a></h2> -->
+<!-- <!-- 				<h2>Medio de Pago : <a th:text="*{medioPago.size}"></a></h2> -->
+<!-- 				<h2>Fecha de Inscripcion : <a th:text="*{fechaInscripcion}"></a></h2> -->
+<!-- 				<h2>Fecha de Pago : <a th:text="*{fechaPago}"></a></h2> -->
+<!-- 				<h2>Medio de Pago : <a th:text="*{medioPago}"></a></h2> -->
+<!-- <!-- 				<h2>Perfiles : <a th:text="*{perfiles}"></a></h2> -->
+<!-- 				<h2>Planes : <a th:text="*{planes}"></a></h2> -->
+<!-- 				<a href="/retroceder" class="btn btn-primary mb-3">RETROCEDER</a> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+			<table class="table table-striped table-bordered">
+			<thead class="table-dark">
+				<tr>
+					<th>Monto</th>
+					<th>Fecha de Pago</th>
+					<th>Fecha de Inscripcion</th>
+					<th>Planes</th>
+<!-- 					<th>Suscripción</th> -->
+					<th>Medio de Pago</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:object="${recibo}">
+					<td th:text="${recibo.monto}">ID</td>
+					<td th:text="${recibo.fechaPago}">ID</td>
+					<td th:text="${recibo.fechaInscripcion}">ID</td>
+					<td th:text="${recibo.planes}">ID</td>
+					<td th:text="${recibo.medioPago}">ID</td>
+<!-- 					<td th:text="${usuario.suscrito}">ID</td> -->
+<!-- 					<td><a th:href="@{/admin/verificarRecibo/{id}(id=*{usuario.id})}" id="id" th:text="${usuario.id}">ID</a></td> -->
+				</tr>
+			</tbody>
+		</table>
 	</div>
-      <script>
-         function eliminarPerfil(id){
-        	 if(!confirm('¿Estás seguro de eliminar este perfil?')){
-        		 return;
-        	 }
-        	 $('#eliminarPerfilForm' + id).submit();
-         }
-      </script>
+			<div class="row">
+
+		</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 

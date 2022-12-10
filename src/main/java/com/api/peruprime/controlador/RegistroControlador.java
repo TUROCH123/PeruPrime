@@ -50,7 +50,7 @@ public class RegistroControlador {
 			logger.info(Constantes.MENSAJE2, "[inicioUserNotAdmin] ", "username es nulo");
 			List<User> usere = userRepositorio.findAll();
 			logger.info(Constantes.MENSAJE2, "[inicioUserNotAdmin] ", usere.get(0).getEmail());
-			user = usere.get(0).getEmail();
+			user = usere.get(0).getEmail() == null || usere.get(0).getEmail().equals("") ? "" : usere.get(0).getEmail();
 			if (user.equals("admin@gmail.com")) {
 				logger.info(Constantes.MENSAJE2, "[equals] ", username);
 				modelo.addAttribute("usuarios", servicio.listarUsuarios());
@@ -76,4 +76,16 @@ public class RegistroControlador {
 	public String tipoPlanes() {
 		return "admin/tipoPlanes";
 	}
+	
+	@GetMapping("/retroceder")
+	public String retroceder() {
+		return "/verificarPerfil";
+	}
+	
+//	@GetMapping("/verificarRecibo/{userId}")
+//	public String verificarRecibo(Model modelo,@RequestParam(value = "userId", required = false) String userId) {
+//		logger.info(Constantes.MENSAJE2, "[verificarRecibo][userId] ", userId);
+//		modelo.addAttribute("userId", userId);
+//		return "admin/verificarRecibo";
+//	}
 }

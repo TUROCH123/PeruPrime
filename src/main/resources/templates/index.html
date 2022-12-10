@@ -67,15 +67,14 @@ form .invalid-feedback {
 <!-- 			+ Thymeleaf + Hibernate + MySQL y Bootstrap</h1> -->
 		<br>
 		<h4>
-			Bienvenido <span sec:authentication="principal.username" id="username" th:value="${#authentication.principal.username}"></span>
+<!-- 			Bienvenido <span sec:authentication="principal.username" id="username" th:value="${#authentication.principal.username}"></span> -->
+					Bienvenido <span sec:authentication="principal.username" ></span>
 		</h4>
-<!-- 		<h4> -->
-<!-- 			Bienvenido <span sec:authentication="principal.username" ></span> -->
-<!-- 		</h4> -->
+<!-- 		<div><sec:authentication property=principal.username id="username"/></div> -->
 		<br> <br>
 		<h1><a th:href="@{/userAdmin{username}(username=*{username})}" > Administrador</a> | <a th:href="@{/userNotAdmin{username}(username=*{username})}"> Usuario</a></h1>
+<!-- 		<h1><a th:href="@{/userAdmin{username}(username=*{username})}" > Administrador</a> | <a th:href="@{/userNotAdmin{username}(username=*{username})}"> Usuario</a></h1> -->
 
-<!--  		<h1><a th:href="@{/userNotAdmin/{usuario}(usuario=*(usuario))}"> Administrador</a> | <a th:href="@{/user}"> Usuario</a></h1> -->
 		<table class="table table-striped table-bordered">
 			<thead class="table-dark">
 				<tr>
@@ -84,6 +83,7 @@ form .invalid-feedback {
 					<th>Apellido</th>
 					<th>Email</th>
 					<th>Suscripción</th>
+					<th>Recibo</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -93,6 +93,9 @@ form .invalid-feedback {
 					<td th:text="${usuario.apellido}">ID</td>
 					<td th:text="${usuario.email}">ID</td>
 					<td th:text="${usuario.suscrito}">ID</td>
+<!-- 					<td th:href="@{/verificarRecibo{userId}(userId=*{usuario.id})}" th:text="${usuario.id}">ID</td> -->
+<!-- 					<td th:href="@{/verificarRecibo{userId}(userId=*{userId})}" id="userId" th:value="${usuario.id}" th:text="${usuario.id}">ID</td> -->
+					<td><a th:href="@{/admin/verificarRecibo/{id}(id=*{usuario.id})}" id="id" th:text="${usuario.id}">ID</a></td>
 				</tr>
 			</tbody>
 		</table>

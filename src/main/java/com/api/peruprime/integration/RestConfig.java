@@ -26,4 +26,9 @@ public class RestConfig {
 	public RestTemplate restTemplatePerfiles(RestTemplateBuilder restTemplateBuilder) {
 		return restTemplateBuilder.setConnectTimeout(null).setReadTimeout(null).build();
 	}
+
+	@Bean(name = "restTemplateRecibo")
+	public RestTemplate restTemplateRecibo(RestTemplateBuilder restTemplateBuilder) {
+		return restTemplateBuilder.setConnectTimeout(null).setReadTimeout(null).build();
+	}
 }

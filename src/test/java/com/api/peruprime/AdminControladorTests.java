@@ -70,7 +70,7 @@ class AdminControladorTests {
 	Usuario usuario = new Usuario();
 	  @SuppressWarnings("null")
 	@Test
-	  void testException001() throws JsonProcessingException, WSException {
+	  void testPeliculaRegistrarEliminar001() throws JsonProcessingException, WSException {
 	    try {
 		      List<User> response = new ArrayList<>();
 		      User user = new User();

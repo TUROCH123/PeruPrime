@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
 <head>
 <meta charset="utf-8">
-<title th:inline="text">Perfiles</title>
+<title>[[${usuario.nombre}]]</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -40,7 +40,7 @@ form .invalid-feedback {
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="navbar-brand" href="/home">Inicio</a></li>
-					<li class="nav-item"><a class="navbar-brand" href="/miLista">Mi Lista</a></li>
+					<li class="nav-item"><a class="navbar-brand" href="/miLista" th:href="@{/miLista/{id}(id=*{usuario.id})}">Mi Lista</a></li>
 					<li class="nav-item"><a class="navbar-brand" href="/peliculas">Peliculas</a></li>
 <!-- 					<li class="nav-item"><a class="navbar-brand" href="/series">Series</a></li> -->
 					<li class="nav-item"><a class="navbar-brand" href="/search">Búsqueda</a></li>
@@ -50,7 +50,8 @@ form .invalid-feedback {
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar Sesión</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar
+							sesión</a></li>
 				</ul>
 			</div>
 		</div>
@@ -58,45 +59,42 @@ form .invalid-feedback {
 
 	<br>
 	<br>
-	<div class="container">
-
-		<h4>Todos los perfiles</h4>
-		<div class="text-end">
-			<a href="/admin/peliculas/nuevo/{email}(email=*{email})" th:href="@{/admin/perfiles/nuevo/{email}(email=*{email})}" class="btn btn-primary mb-3">
-				Agregar perfil </a>
-		</div>
+	<div class="container" th:object="${usuario}">
 		<div class="row">
-			<div class="row">
-				<div class="col-md-3 my-5" th:each="perfil : ${perfiles}"
-					th:object="${perfil}">
-					<a th:href="@{/perfiles/{id}(id=*{id})}" class="card shadow-lg"
-						style="text-decoration: none;"> 
-						<img
-						th:src="@{/assets/{filename}(filename=*{avatar})}" class="card-img-top">
+<!-- 			<div class="col-md-6"> -->
+<!-- 				<img th:src="@{/assets/{filename}(filename=*{avatar})}" th:alt="*{alias}"class="img-fluid rounded w-100"> -->
+<!-- 					th:alt="*{titulo}" class="img-fluid rounded w-100"> -->
+<!-- 			</div> -->
+			<div class="col-md-9">
 
-						<div class="card-body">
-							<h2 class="card-title fs-6" th:text="*{alias}"></h2>
-<!-- 							<p th:text="*{#temporals.format(fechaEstreno,'dd/MM/yyyy')}" -->
-<!-- 								class="text-muted small"></p> -->
-						</div>
-					</a>
-					<a th:href="@{/admin/perfiles/{id}/editar(id=*{id})}">Editar</a>
-					   <a href="javascript:void(0)" class="text-danger ms-3" th:onclick="'eliminarPerfil(' + *{id} +')'">Eliminar</a>
-					   <form th:id="'eliminarPerfilForm' + *{id}" th:action="@{/admin/perfiles/{id}/eliminar(id=*{id})}" method="post" class="d-none">
-					   </form>
-				</div>
+				<h2>Nombre : <a th:text="*{nombre}"></a></h2>
+				<h2>Apellidos : <a th:text="*{apellido}"></a></h2>
+				<h2>Email : <a th:text="*{email}"></a></h2>
+				<h2>Suscrito : <a th:text="*{suscrito}"></a></h2>
+				<h2>Fecha de Inscripcion : <a th:text="*{fechaInscripcion}"></a></h2>
+				<h2>Fecha de Vencimiento : <a th:text="*{fechaVencimiento}"></a></h2>
+				<h2>Medio de Pago : <a th:text="*{medioPago.size}"></a></h2>
+				<h2>Perfiles : <a th:text="*{perfiles.size}"></a></h2>
+				<h2>Planes : <a th:text="*{planes}"></a></h2>
+<!-- 				<h2>Rol : <a th:text="*{rol}"></a></h2> -->
+<!-- 				<form th:action="@{/retroceder}" method="get"> -->
+<!-- 					<button aria-label="ATRAS" -->
+<!-- 						data-testid="credit-submit-button" role="button" kind="primary" -->
+<!-- 						class="btn btn-primary mb-3" -->
+<!-- 						id="credit-submit-button" type="submit" value="submit" -->
+<!-- 						data-gv2elementkey="agree_&amp;_subscribe" -->
+<!-- 						data-gv2interactionkey="agree_&amp;_subscribe" -->
+<!-- 						data-gv2-interaction-bound="true"> -->
+<!-- 						<span>RETROCEDER</span> -->
+<!-- 					</button> -->
+<!-- 				</form> -->
+				<a href="/retroceder" class="btn btn-primary mb-3">RETROCEDER</a>
 			</div>
 		</div>
-				<a href="/retroceder" class="btn btn-primary mb-3">RETROCEDER</a>
 	</div>
-      <script>
-         function eliminarPerfil(id){
-        	 if(!confirm('¿Estás seguro de eliminar este perfil?')){
-        		 return;
-        	 }
-        	 $('#eliminarPerfilForm' + id).submit();
-         }
-      </script>
+			<div class="row">
+
+		</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 

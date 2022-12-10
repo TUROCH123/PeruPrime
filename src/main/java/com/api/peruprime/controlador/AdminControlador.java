@@ -23,6 +23,7 @@ import com.api.peruprime.controlador.dto.Respuesta;
 import com.api.peruprime.exception.WSException;
 import com.api.peruprime.integration.PagoWs;
 import com.api.peruprime.integration.PerfilWs;
+import com.api.peruprime.integration.ReciboWs;
 import com.api.peruprime.integration.UsuarioWs;
 import com.api.peruprime.modelo.Genero;
 import com.api.peruprime.modelo.MedioPago;
@@ -30,6 +31,7 @@ import com.api.peruprime.modelo.Pago;
 import com.api.peruprime.modelo.Pelicula;
 import com.api.peruprime.modelo.Perfiles;
 import com.api.peruprime.modelo.Planes;
+import com.api.peruprime.modelo.Recibo;
 import com.api.peruprime.modelo.TipoPlanes;
 import com.api.peruprime.modelo.Usuario;
 import com.api.peruprime.repositorio.GeneroRepositorio;
@@ -72,6 +74,8 @@ public class AdminControlador {
 	private PagoWs pagoWs;
 	@Autowired
 	private PerfilWs perfilWs;
+	@Autowired
+	private ReciboWs reciboWs;
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
 	
@@ -186,7 +190,7 @@ public class AdminControlador {
 			plan = tipoPlanesRepositorio.findById(3);
 			tipoPlanes = new TipoPlanes(plan.get().getNombre(), plan.get().getPrecio(), plan.get().getTiempo());
 		}
-		return new ModelAndView("index2").addObject("usuario", usuario).addObject("tipoPlanes", tipoPlanes);
+		return new ModelAndView("pago").addObject("usuario", usuario).addObject("tipoPlanes", tipoPlanes);
 	}
 
 	@GetMapping("/registrarPago")
@@ -222,6 +226,9 @@ public class AdminControlador {
 		logger.info(Constantes.MENSAJE2, "[actualizarUsuarioPorID][pago] ", "despues del pago");
 		usuariows.actualizarUsuarioPorID(usuario.getId(), usuario);
 		logger.info(Constantes.MENSAJE2, "[actualizarUsuarioPorID][pago] ", "despues del pago");
+		//realizar Recibo de Pago
+		Recibo recibo = new Recibo(planes.getTipoPlanes().getPrecio(), pago.getFechaPago(), medioPago, planes, usuario.getId(), usuario.getFechaInscripcion(),usuario.getNombre(),usuario.getApellido(),usuario.getSuscrito());
+		reciboWs.realizarRecibo(recibo);
 		List<Pelicula> peliculas = peliculaRepositorio.findAll();
 		return new ModelAndView("admin/index").addObject("peliculas", peliculas).addObject("email",
 				email);
@@ -235,8 +242,15 @@ public class AdminControlador {
 		ResponseEntity<Usuario> usuario = perfilWs.obtenerPerfilPorEmail(email);
 		String objs = Constantes.printPrettyJSONString(usuario);
 		logger.info(Constantes.MENSAJE2, "[verificarPerfil] ", objs);
+		if(usuario.getBody() == null) {
+			logger.info(Constantes.MENSAJE2, "[Perfil] ", "no tiene perfiles");
+			return new ModelAndView("admin/nueva-perfil").addObject("perfil", new Perfiles()).addObject("email",
+					emailUser);
+		}else{
+			logger.info(Constantes.MENSAJE2, "[Perfiles] ", usuario.getBody().getPerfiles().size());
 		return new ModelAndView("admin/perfiles").addObject("perfiles", usuario.getBody().getPerfiles()).addObject("email",
 				emailUser);
+	}
 	}
 	
 //	@GetMapping("/perfiles/nuevo")
@@ -272,7 +286,13 @@ public class AdminControlador {
 		ResponseEntity<Usuario> usuario = perfilWs.obtenerPerfilPorEmail(emailUser);
 		String objs1 = Constantes.printPrettyJSONString(usuario);
 		logger.info(Constantes.MENSAJE2, "[registrarPerfil1] ", objs1);
+		if(usuario.getBody() == null) {
+			List<Perfiles> perfiles = new ArrayList<>();
+			perfiles.add(perfil);
+			usuario.getBody().setPerfiles(perfiles);
+		}else {
 		usuario.getBody().getPerfiles().add(perfil);
+		}
 		String objs = Constantes.printPrettyJSONString(usuario);
 		logger.info(Constantes.MENSAJE2, "[registrarPerfil2] ", objs);
 		logger.info(Constantes.MENSAJE2, "[actualizarUsuarioPorID][perfil] ", "despues de crear el perfil");
@@ -330,5 +350,61 @@ public class AdminControlador {
 		servicio.eliminarArchivo(perfil.getAvatar());
 
 		return "redirect:/admin";
+	}
+	
+	@GetMapping("/verificarDatosUsuario")
+	public ModelAndView verificarDatosUsuario(@RequestParam String email)
+			throws WSException, JsonProcessingException {
+		emailUser = email;
+		logger.info(Constantes.MENSAJE2, "[verificarDatosUsuario][email] ", email);
+		ResponseEntity<Usuario> usuario = perfilWs.obtenerPerfilPorEmail(email);
+		String objs = Constantes.printPrettyJSONString(usuario);
+		logger.info(Constantes.MENSAJE2, "[verificarDatosUsuario] ", objs);
+		if(usuario.getBody() == null) {
+			logger.info(Constantes.MENSAJE2, "[Usuario] ", "no concuerda el usuario");
+			return new ModelAndView("admin/usuario").addObject("usuario", new Usuario()).addObject("email",
+					emailUser);
+		}else{
+			logger.info(Constantes.MENSAJE2, "[Perfiles] ", usuario.getBody().getPerfiles().size());
+			return new ModelAndView("admin/usuario").addObject("usuario", usuario.getBody()).addObject("email",
+					emailUser);
+		}
+	}
+	
+	@GetMapping("/realizarSuscripcion{email}")
+	public ModelAndView realizarSuscripcion(@RequestParam String email)
+			throws WSException, JsonProcessingException {
+		emailUser = email;
+		logger.info(Constantes.MENSAJE2, "[verificarDatosUsuario][email] ", email);
+		ResponseEntity<Usuario> usuario = perfilWs.obtenerPerfilPorEmail(email);
+		String objs = Constantes.printPrettyJSONString(usuario);
+		logger.info(Constantes.MENSAJE2, "[verificarDatosUsuario] ", objs);
+		if(usuario.getBody().getSuscrito().equalsIgnoreCase("VIP")) {
+			logger.info(Constantes.MENSAJE2, "[Usuario][VIP] ", usuario.getBody().getSuscrito());
+			return new ModelAndView("/verificarPerfil").addObject("email", emailUser);
+		}else{
+			logger.info(Constantes.MENSAJE2, "[Usuario][FREE] ", usuario.getBody().getSuscrito());
+			return new ModelAndView("pago").addObject("usuario", usuario.getBody()).addObject("email",
+					emailUser);
+		}
+	}
+	
+	@GetMapping("/verificarRecibo/{id}")
+	public ModelAndView verificarRecibo(@PathVariable("id") String id)
+			throws WSException, JsonProcessingException {
+		
+//		emailUser = email;
+		logger.info(Constantes.MENSAJE2, "[verificarRecibo][userId] ", id);
+		Recibo recibo = reciboWs.obtenerReciboPorId(id);
+		String objs = Constantes.printPrettyJSONString(recibo);
+		logger.info(Constantes.MENSAJE2, "[verificarRecibo] ", objs);
+//		if(usuario.getBody().getSuscrito().equalsIgnoreCase("VIP")) {
+//			logger.info(Constantes.MENSAJE2, "[Usuario][VIP] ", usuario.getBody().getSuscrito());
+//			return new ModelAndView("/verificarPerfil").addObject("email", emailUser);
+//		}else{
+//			logger.info(Constantes.MENSAJE2, "[Usuario][FREE] ", usuario.getSuscrito());
+			return new ModelAndView("admin/recibo").addObject("recibo", recibo).addObject("email",
+					emailUser);
+//		}
 	}
 }
